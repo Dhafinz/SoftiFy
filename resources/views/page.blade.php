@@ -94,7 +94,7 @@
                             <li>- Progres target</li>
                             <li>- Streak belajar</li>
                         </ul>
-                        <a class="btn-link">Selengkapnya...</a>
+                        <a href="{{ route('dashboard') }}" class="btn-link">Selengkapnya...</a>
                     </div>
                 </div><div class="card">
                         <div class="header">
