@@ -87,11 +87,13 @@
         </thead>
         <tbody>
           @foreach(($recentUsers ?? []) as $user)
+            @if($user)
             <tr>
-              <td>{{ $user->name }}</td>
-              <td>{{ $user->email }}</td>
-              <td>{{ $user->created_at->format('Y-m-d') }}</td>
+              <td>{{ $user->name ?? '-' }}</td>
+              <td>{{ $user->email ?? '-' }}</td>
+              <td>{{ optional($user->created_at)->format('Y-m-d') ?? '-' }}</td>
             </tr>
+            @endif
           @endforeach
         </tbody>
       </table>
