@@ -267,7 +267,6 @@
     <li><a href="#"><span class="nav-icon">📝</span>Catatan</a></li>
     <li><a href="#"><span class="nav-icon">🎯</span>Target</a></li>
   </ul>
-  <div class="sidebar-section-label">Akun</div>
   <div class="sidebar-bottom">
     <ul class="sidebar-nav">
       <li><a href="#"><span class="nav-icon">⚙️</span>Pengaturan</a></li>
@@ -297,7 +296,7 @@
     <div class="page-header">
       <div>
         <h1>Dashboard Belajar</h1>
-        <p>Selamat datang kembali, Andi 👋 — Tetap semangat hari ini!</p>
+        <p>Selamat datang kembali, Agus 👋 — Tetap semangat hari ini!</p>
       </div>
       <div class="streak-badge" id="header-streak-badge">🔥 Streak: 0 hari berturut-turut</div>
     </div>

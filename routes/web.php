@@ -11,6 +11,16 @@ Route::get('/page', function () {
     return view('page');
 });
 
+use App\Http\Controllers\AuthController;
+
+Route::get('/auth', function () {
+    return view('auth');
+});
+
+Route::post('/login', [AuthController::class, 'login'])->name('login');
+Route::post('/register', [AuthController::class, 'register'])->name('register');
+
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
@@ -27,4 +37,6 @@ Route::get('/admin', function () {
         'reports' => $reports,
         'recentUsers' => $recentUsers,
     ]);
+
+    
 });
