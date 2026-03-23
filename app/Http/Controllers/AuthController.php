@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+<<<<<<< HEAD
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -45,10 +46,35 @@ class AuthController extends Controller
         $request->session()->regenerate();
 
         return redirect()->route('dashboard')->with('success', 'Akun berhasil dibuat. Selamat datang di SoftiFY!');
+=======
+use Illuminate\Http\Request;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+
+class AuthController extends Controller
+{
+    public function register(Request $request)
+    {
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required|email|unique:users',
+            'password' => 'required|min:6|confirmed',
+        ]);
+
+        User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+        ]);
+
+        return redirect('/auth')->with('success', 'Register berhasil!');
+>>>>>>> 02419d06a0ab67eef11f7cdc62efad154ccf90c7
     }
 
     public function login(Request $request)
     {
+<<<<<<< HEAD
         $credentials = $request->validate([
             'email' => ['required', 'email'],
             'password' => ['required', 'string'],
@@ -92,3 +118,12 @@ class AuthController extends Controller
         return redirect()->route('login')->with('success', 'Anda berhasil logout.');
     }
 }
+=======
+        if (Auth::attempt($request->only('email', 'password'))) {
+            return redirect('/page');
+        }
+
+        return back()->with('error', 'Login gagal!');
+    }
+}
+>>>>>>> 02419d06a0ab67eef11f7cdc62efad154ccf90c7
