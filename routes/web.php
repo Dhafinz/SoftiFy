@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\AIController;
 use App\Http\Controllers\AiAssistantController;
 use App\Http\Controllers\ChallengeController;
 use App\Http\Controllers\DashboardController;
@@ -94,6 +95,7 @@ Route::middleware(['auth', 'not.banned'])->group(function () {
     Route::post('/challenge/sessions', [ChallengeController::class, 'storeSession'])->name('challenge.sessions.store');
 
     Route::post('/ai-assistant/chat', [AiAssistantController::class, 'chat'])->name('ai.chat');
+    Route::post('/ai-chat', [AIController::class, 'chat'])->name('ai.chat.json');
     Route::post('/ai-assistant/generate-today', [AiAssistantController::class, 'generateTodaySchedule'])->name('ai.generate.today');
     Route::delete('/ai-assistant/clear', [AiAssistantController::class, 'clear'])->name('ai.clear');
 
