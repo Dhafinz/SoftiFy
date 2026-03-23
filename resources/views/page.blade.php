@@ -13,29 +13,58 @@
     <title>SOFTIFY</title>
 </head>
 <body>
+    @php
+        $displayHowItWorks = !empty($howItWorksSteps ?? [])
+            ? $howItWorksSteps
+            : [
+                ['title' => 'Login terlebih dahulu', 'description' => 'Masuk ke akun Anda untuk membuka dashboard belajar, melihat progres, dan mengakses semua fitur yang sudah dipersonalisasi.'],
+                ['title' => 'Atur jadwal belajar', 'description' => 'Tentukan waktu belajar harian sesuai ritme Anda. Sistem akan membantu menjaga konsistensi dengan pengingat otomatis.'],
+                ['title' => 'Buat target mingguan', 'description' => 'Susun target yang jelas agar fokus belajar lebih terarah. Anda bisa memantau progres setiap target secara real-time.'],
+                ['title' => 'Selesaikan tugas harian', 'description' => 'Kerjakan daftar tugas satu per satu dan tandai yang selesai. Setiap pencapaian akan masuk ke statistik produktivitas Anda.'],
+                ['title' => 'Gunakan AI Asisten', 'description' => 'Tanyakan materi, minta ringkasan, atau rekomendasi strategi belajar. AI Asisten membantu Anda belajar lebih cepat dan efektif.'],
+                ['title' => 'Review progres rutin', 'description' => 'Lihat perkembangan streak, jam belajar, dan capaian target. Dari sana Anda bisa evaluasi dan optimalkan strategi belajar berikutnya.'],
+            ];
+
+        $displayPremiumPrice = $premiumPriceMonthly ?? 49000;
+        $displayPremiumFeatures = !empty($premiumFeatureLines ?? [])
+            ? $premiumFeatureLines
+            : [
+                'Semua fitur Paket Gratis',
+                'Analitik lanjutan belajar',
+                'Dukungan prioritas 24/7',
+                'Rencana belajar kustom',
+                'Akses offline materi',
+                'Penyimpanan tak terbatas',
+            ];
+    @endphp
     
     <header>
         <nav>
             <div class="logo">
                 <h1><a href="">SOFTI<span style="color: #1e56a0;">FY</span></a></h1>
             </div>
-            <ul>
+            <button class="menu-toggle" type="button" aria-label="Buka navigasi" aria-expanded="false" aria-controls="main-nav-links">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul id="main-nav-links">
                 <li><a href="">Beranda</a></li>
-                <li><a href="">Fitur</a></li>
-                <li><a href="">Cara Kerja</a></li>
-                <li><a href="">Premium</a></li>
+                <li><a href="#fitur">Fitur</a></li>
+                <li><a href="#cara-kerja">Cara Kerja</a></li>
+                <li><a href="#premium">Premium</a></li>
                 <li><a href="">Tentang Kami</a></li>
             </ul>
             <div class="right-nav">
                 <a href="" class="contact">Kontak</a>
                 <p style="color: black; font-size: 20px;">|</p>
-                <a href="" class="sign">Daftar</a>
+                <a href="{{ route('daftar') }}" class="sign">Daftar</a>
             </div>
         </nav>
     </header>
 
     <main>
-<section class="hero">
+<section class="hero" id="beranda">
     <div class="heros">
 {{-- Penjelasan dan tombool hero --}}
         <div class="hero-content">
@@ -69,332 +98,362 @@
     </div>
     <img src="{{ asset('img/bg.png') }}" alt="Background Image" style="width: 100%;">
 </section>
-        <section class="feature">
-            <div class="fitur">
-                <div class="section-header">
-                    <h2>Fitur Kami</h2>
-                    <p>Alat bertenaga yang dirancang untuk membantu Anda belajar lebih cerdas, bukan lebih keras</p>
+        <section class="feature" id="fitur">
+            <div class="feature-shell">
+                <div class="feature-header scroll-fade">
+                    <p class="feature-kicker">SoftiFy Platform</p>
+                    <h2>Semua Fitur Produktivitas Pelajar Dalam Satu Alur Belajar</h2>
+                    <p>Dirancang dengan AI, gamifikasi, dan task management untuk membantu pelajar tetap konsisten, fokus, dan termotivasi setiap hari.</p>
                 </div>
-                <div class="fiturs">
-                    <div class="card">
-                        <div class="header">
-                    <div class="img-box">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-layout-dashboard-icon lucide-layout-dashboard"><rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/><rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="16" rx="1"/></svg>
-                            <path fill="none" d="M0 0h24v24H0z"></path>
-                            <path d="M20.083 15.2l1.202.721a.5.5 0 0 1 0 .858l-8.77 5.262a1 1 0 0 1-1.03 0l-8.77-5.262a.5.5 0 0 1 0-.858l1.202-.721L12 20.05l8.083-4.85zm0-4.7l1.202.721a.5.5 0 0 1 0 .858L12 17.65l-9.285-5.571a.5.5 0 0 1 0-.858l1.202-.721L12 15.35l8.083-4.85zm-7.569-9.191l8.771 5.262a.5.5 0 0 1 0 .858L12 13 2.715 7.429a.5.5 0 0 1 0-.858l8.77-5.262a1 1 0 0 1 1.03 0zM12 3.332L5.887 7 12 10.668 18.113 7 12 3.332z" fill="rgba(66,193,110,1)"></path>
-                        </svg>
+
+                <div class="feature-grid">
+                    <div class="feature-list" role="tablist" aria-label="Daftar fitur SoftiFy">
+                        <article class="feature-item is-active scroll-fade" data-feature="stats" role="tab" aria-selected="true" tabindex="0">
+                            <span class="feature-index">01</span>
+                            <h3>Study Statistics Dashboard</h3>
+                            <p>Lihat total jam belajar hari ini, jumlah tugas selesai, progres mingguan-bulanan, dan streak belajar hingga 7 hari berturut-turut.</p>
+                        </article>
+
+                        <article class="feature-item scroll-fade" data-feature="notif" role="tab" aria-selected="false" tabindex="-1">
+                            <span class="feature-index">02</span>
+                            <h3>Smart Notifications</h3>
+                            <p>Notifikasi cerdas mengingatkan saat deadline tugas mendekat atau saat waktunya mulai sesi belajar.</p>
+                        </article>
+
+                        <article class="feature-item scroll-fade" data-feature="ai" role="tab" aria-selected="false" tabindex="-1">
+                            <span class="feature-index">03</span>
+                            <h3>AI Study Assistant</h3>
+                            <p>AI membantu menyusun strategi belajar, memberi referensi, membuat jadwal belajar, dan mengisi jurnal studi pada halaman tugas.</p>
+                        </article>
+
+                        <article class="feature-item scroll-fade" data-feature="task" role="tab" aria-selected="false" tabindex="-1">
+                            <span class="feature-index">04</span>
+                            <h3>Task Manager</h3>
+                            <p>Atur jadwal tugas harian dan lacak progres assignment dengan sistem manajemen tugas yang rapi dan fokus.</p>
+                        </article>
+
+                        <article class="feature-item scroll-fade" data-feature="goal" role="tab" aria-selected="false" tabindex="-1">
+                            <span class="feature-index">05</span>
+                            <h3>Goal System</h3>
+                            <p>Tentukan target belajar harian, mingguan, bulanan, hingga tahunan untuk arah belajar yang konsisten.</p>
+                        </article>
+
+                        <article class="feature-item scroll-fade" data-feature="challenge" role="tab" aria-selected="false" tabindex="-1">
+                            <span class="feature-index">06</span>
+                            <h3>Study Challenge</h3>
+                            <p>Selesaikan sesi belajar berbasis timer dan kumpulkan reward dari tantangan gamifikasi untuk meningkatkan motivasi.</p>
+                        </article>
+
+                        <article class="feature-item scroll-fade" data-feature="profile" role="tab" aria-selected="false" tabindex="-1">
+                            <span class="feature-index">07</span>
+                            <h3>User Profile</h3>
+                            <p>Kelola identitas pengguna seperti nama, status pelajar, gender, dan informasi akun dalam satu halaman profil.</p>
+                        </article>
+
+                        <article class="feature-item scroll-fade" data-feature="leaderboard" role="tab" aria-selected="false" tabindex="-1">
+                            <span class="feature-index">08</span>
+                            <h3>Leaderboard</h3>
+                            <p>Kompetisi sehat antar pengguna melalui papan peringkat berdasarkan EXP dari goals dan challenge yang diselesaikan.</p>
+                        </article>
                     </div>
-                    <span class="title">DashBoard</span>
+
+                    <aside class="feature-preview sticky-preview scroll-fade" aria-live="polite">
+                        <div class="preview-bg-orb"></div>
+
+                        <section class="preview-screen is-active" data-preview="stats">
+                            <header>
+                                <p>Analytics</p>
+                                <span>Live Overview</span>
+                            </header>
+                            <div class="screen-grid two">
+                                <div class="screen-card">
+                                    <p>Total Study Hours</p>
+                                    <h4>5j 24m</h4>
+                                    <small>Hari ini</small>
+                                </div>
+                                <div class="screen-card">
+                                    <p>Completed Tasks</p>
+                                    <h4>14</h4>
+                                    <small>+3 dari kemarin</small>
+                                </div>
+                            </div>
+                            <div class="screen-chart">
+                                <span>Progress Mingguan</span>
+                                <div class="bars">
+                                    <i style="--h:48%"></i><i style="--h:65%"></i><i style="--h:54%"></i><i style="--h:78%"></i><i style="--h:72%"></i><i style="--h:86%"></i><i style="--h:92%"></i>
+                                </div>
+                            </div>
+                            <footer>
+                                <strong>Study Streak</strong>
+                                <p>7 hari berturut-turut</p>
+                            </footer>
+                        </section>
+
+                        <section class="preview-screen" data-preview="notif">
+                            <header>
+                                <p>Smart Alerts</p>
+                                <span>AI Reminder Center</span>
+                            </header>
+                            <ul class="notify-list">
+                                <li><strong>Matematika</strong><span>Deadline 3 jam lagi</span></li>
+                                <li><strong>Focus Session</strong><span>Mulai pukul 19:00</span></li>
+                                <li><strong>Jurnal Belajar</strong><span>Belum diisi hari ini</span></li>
+                                <li><strong>Weekly Review</strong><span>Jadwalkan malam ini</span></li>
+                            </ul>
+                        </section>
+
+                        <section class="preview-screen" data-preview="ai">
+                            <header>
+                                <p>AI Study Assistant</p>
+                                <span>Prompt to Plan</span>
+                            </header>
+                            <div class="chat-bubble from-user">Buatkan strategi belajar ujian Fisika dalam 10 hari.</div>
+                            <div class="chat-bubble from-ai">Siap. Saya susun rencana harian: konsep, latihan soal, review, dan simulasi akhir.</div>
+                            <div class="ai-pill-group">
+                                <span>Referensi Materi</span>
+                                <span>Jadwal Otomatis</span>
+                                <span>Isi Jurnal</span>
+                            </div>
+                        </section>
+
+                        <section class="preview-screen" data-preview="task">
+                            <header>
+                                <p>Task Manager</p>
+                                <span>Daily Planner</span>
+                            </header>
+                            <div class="task-row done"><label><input type="checkbox" checked> Review Biologi Bab 2</label><span>08:00</span></div>
+                            <div class="task-row"><label><input type="checkbox"> Kerjakan 20 soal Kalkulus</label><span>13:00</span></div>
+                            <div class="task-row"><label><input type="checkbox"> Buat ringkasan Sejarah</label><span>16:30</span></div>
+                            <div class="task-row"><label><input type="checkbox" checked> Riset materi presentasi</label><span>20:00</span></div>
+                        </section>
+
+                        <section class="preview-screen" data-preview="goal">
+                            <header>
+                                <p>Goal System</p>
+                                <span>Milestone Tracker</span>
+                            </header>
+                            <div class="goal-item"><span>Daily Goal</span><em>80%</em><b style="--goal:80%"></b></div>
+                            <div class="goal-item"><span>Weekly Goal</span><em>64%</em><b style="--goal:64%"></b></div>
+                            <div class="goal-item"><span>Monthly Goal</span><em>42%</em><b style="--goal:42%"></b></div>
+                            <div class="goal-item"><span>Yearly Goal</span><em>27%</em><b style="--goal:27%"></b></div>
+                        </section>
+
+                        <section class="preview-screen" data-preview="challenge">
+                            <header>
+                                <p>Study Challenge</p>
+                                <span>Gamified Focus Mode</span>
+                            </header>
+                            <div class="timer-circle">
+                                <strong>25:00</strong>
+                                <p>Focus Session</p>
+                            </div>
+                            <div class="reward-row">
+                                <span>Reward Hari Ini</span>
+                                <b>+120 EXP</b>
+                            </div>
+                            <div class="badge-track">
+                                <i></i><i></i><i></i><i class="locked"></i>
+                            </div>
+                        </section>
+
+                        <section class="preview-screen" data-preview="profile">
+                            <header>
+                                <p>User Profile</p>
+                                <span>Account Center</span>
+                            </header>
+                            <div class="profile-card">
+                                <div class="avatar">AF</div>
+                                <div>
+                                    <h4>Alif Fadlan</h4>
+                                    <p>Status: Student</p>
+                                </div>
+                            </div>
+                            <ul class="profile-list">
+                                <li>Gender <span>Laki-laki</span></li>
+                                <li>Email <span>alif@softify.id</span></li>
+                                <li>Account <span>Premium Active</span></li>
+                            </ul>
+                        </section>
+
+                        <section class="preview-screen" data-preview="leaderboard">
+                            <header>
+                                <p>Leaderboard</p>
+                                <span>Top EXP Students</span>
+                            </header>
+                            <ol class="leaderboard-list">
+                                <li><strong>1</strong><p>Nadia</p><span>9,420 EXP</span></li>
+                                <li><strong>2</strong><p>Rafi</p><span>9,180 EXP</span></li>
+                                <li><strong>3</strong><p>Alif</p><span>8,960 EXP</span></li>
+                                <li><strong>4</strong><p>Dina</p><span>8,540 EXP</span></li>
+                            </ol>
+                        </section>
+                    </aside>
                 </div>
-                    <div class="content">
-                        <p>Dashboard ini menampilkan data statistik :</p>
-                        <ul>
-                            <li>- Jumlah jam belajar/hari</li>
-                            <li>- Jumlah tugas yang telah selesai</li>
-                            <li>- Progres target</li>
-                            <li>- Streak belajar</li>
-                        </ul>
-                        <a href="{{ route('dashboard') }}" class="btn-link">Selengkapnya...</a>
-                    </div>
-                </div><div class="card">
-                        <div class="header">
-                    <div class="img-box">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-layout-dashboard-icon lucide-layout-dashboard"><rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/><rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="16" rx="1"/></svg>
-                            <path fill="none" d="M0 0h24v24H0z"></path>
-                            <path d="M20.083 15.2l1.202.721a.5.5 0 0 1 0 .858l-8.77 5.262a1 1 0 0 1-1.03 0l-8.77-5.262a.5.5 0 0 1 0-.858l1.202-.721L12 20.05l8.083-4.85zm0-4.7l1.202.721a.5.5 0 0 1 0 .858L12 17.65l-9.285-5.571a.5.5 0 0 1 0-.858l1.202-.721L12 15.35l8.083-4.85zm-7.569-9.191l8.771 5.262a.5.5 0 0 1 0 .858L12 13 2.715 7.429a.5.5 0 0 1 0-.858l8.77-5.262a1 1 0 0 1 1.03 0zM12 3.332L5.887 7 12 10.668 18.113 7 12 3.332z" fill="rgba(66,193,110,1)"></path>
-                        </svg>
-                    </div>
-                    <span class="title">DashBoard</span>
-                </div>
-                    <div class="content">
-                        <p>Dashboard ini menampilkan data statistik :</p>
-                        <ul>
-                            <li>- Jumlah jam belajar/hari</li>
-                            <li>- Jumlah tugas yang telah selesai</li>
-                            <li>- Progres target</li>
-                            <li>- Streak belajar</li>
-                        </ul>
-                        <a class="btn-link">Selengkapnya...</a>
-                    </div>
-                </div><div class="card">
-                        <div class="header">
-                    <div class="img-box">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-layout-dashboard-icon lucide-layout-dashboard"><rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/><rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="16" rx="1"/></svg>
-                            <path fill="none" d="M0 0h24v24H0z"></path>
-                            <path d="M20.083 15.2l1.202.721a.5.5 0 0 1 0 .858l-8.77 5.262a1 1 0 0 1-1.03 0l-8.77-5.262a.5.5 0 0 1 0-.858l1.202-.721L12 20.05l8.083-4.85zm0-4.7l1.202.721a.5.5 0 0 1 0 .858L12 17.65l-9.285-5.571a.5.5 0 0 1 0-.858l1.202-.721L12 15.35l8.083-4.85zm-7.569-9.191l8.771 5.262a.5.5 0 0 1 0 .858L12 13 2.715 7.429a.5.5 0 0 1 0-.858l8.77-5.262a1 1 0 0 1 1.03 0zM12 3.332L5.887 7 12 10.668 18.113 7 12 3.332z" fill="rgba(66,193,110,1)"></path>
-                        </svg>
-                    </div>
-                    <span class="title">DashBoard</span>
-                </div>
-                    <div class="content">
-                        <p>Dashboard ini menampilkan data statistik :</p>
-                        <ul>
-                            <li>- Jumlah jam belajar/hari</li>
-                            <li>- Jumlah tugas yang telah selesai</li>
-                            <li>- Progres target</li>
-                            <li>- Streak belajar</li>
-                        </ul>
-                        <a class="btn-link">Selengkapnya...</a>
-                    </div>
-                </div><div class="card">
-                        <div class="header">
-                    <div class="img-box">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-layout-dashboard-icon lucide-layout-dashboard"><rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/><rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="16" rx="1"/></svg>
-                            <path fill="none" d="M0 0h24v24H0z"></path>
-                            <path d="M20.083 15.2l1.202.721a.5.5 0 0 1 0 .858l-8.77 5.262a1 1 0 0 1-1.03 0l-8.77-5.262a.5.5 0 0 1 0-.858l1.202-.721L12 20.05l8.083-4.85zm0-4.7l1.202.721a.5.5 0 0 1 0 .858L12 17.65l-9.285-5.571a.5.5 0 0 1 0-.858l1.202-.721L12 15.35l8.083-4.85zm-7.569-9.191l8.771 5.262a.5.5 0 0 1 0 .858L12 13 2.715 7.429a.5.5 0 0 1 0-.858l8.77-5.262a1 1 0 0 1 1.03 0zM12 3.332L5.887 7 12 10.668 18.113 7 12 3.332z" fill="rgba(66,193,110,1)"></path>
-                        </svg>
-                    </div>
-                    <span class="title">DashBoard</span>
-                </div>
-                    <div class="content">
-                        <p>Dashboard ini menampilkan data statistik :</p>
-                        <ul>
-                            <li>- Jumlah jam belajar/hari</li>
-                            <li>- Jumlah tugas yang telah selesai</li>
-                            <li>- Progres target</li>
-                            <li>- Streak belajar</li>
-                        </ul>
-                        <a class="btn-link">Selengkapnya...</a>
-                    </div>
-                </div><div class="card">
-                        <div class="header">
-                    <div class="img-box">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-layout-dashboard-icon lucide-layout-dashboard"><rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/><rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="16" rx="1"/></svg>
-                            <path fill="none" d="M0 0h24v24H0z"></path>
-                            <path d="M20.083 15.2l1.202.721a.5.5 0 0 1 0 .858l-8.77 5.262a1 1 0 0 1-1.03 0l-8.77-5.262a.5.5 0 0 1 0-.858l1.202-.721L12 20.05l8.083-4.85zm0-4.7l1.202.721a.5.5 0 0 1 0 .858L12 17.65l-9.285-5.571a.5.5 0 0 1 0-.858l1.202-.721L12 15.35l8.083-4.85zm-7.569-9.191l8.771 5.262a.5.5 0 0 1 0 .858L12 13 2.715 7.429a.5.5 0 0 1 0-.858l8.77-5.262a1 1 0 0 1 1.03 0zM12 3.332L5.887 7 12 10.668 18.113 7 12 3.332z" fill="rgba(66,193,110,1)"></path>
-                        </svg>
-                    </div>
-                    <span class="title">DashBoard</span>
-                </div>
-                    <div class="content">
-                        <p>Dashboard ini menampilkan data statistik :</p>
-                        <ul>
-                            <li>- Jumlah jam belajar/hari</li>
-                            <li>- Jumlah tugas yang telah selesai</li>
-                            <li>- Progres target</li>
-                            <li>- Streak belajar</li>
-                        </ul>
-                        <a class="btn-link">Selengkapnya...</a>
-                    </div>
-                </div><div class="card">
-                        <div class="header">
-                    <div class="img-box">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-layout-dashboard-icon lucide-layout-dashboard"><rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/><rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="16" rx="1"/></svg>
-                            <path fill="none" d="M0 0h24v24H0z"></path>
-                            <path d="M20.083 15.2l1.202.721a.5.5 0 0 1 0 .858l-8.77 5.262a1 1 0 0 1-1.03 0l-8.77-5.262a.5.5 0 0 1 0-.858l1.202-.721L12 20.05l8.083-4.85zm0-4.7l1.202.721a.5.5 0 0 1 0 .858L12 17.65l-9.285-5.571a.5.5 0 0 1 0-.858l1.202-.721L12 15.35l8.083-4.85zm-7.569-9.191l8.771 5.262a.5.5 0 0 1 0 .858L12 13 2.715 7.429a.5.5 0 0 1 0-.858l8.77-5.262a1 1 0 0 1 1.03 0zM12 3.332L5.887 7 12 10.668 18.113 7 12 3.332z" fill="rgba(66,193,110,1)"></path>
-                        </svg>
-                    </div>
-                    <span class="title">DashBoard</span>
-                </div>
-                    <div class="content">
-                        <p>Dashboard ini menampilkan data statistik :</p>
-                        <ul>
-                            <li>- Jumlah jam belajar/hari</li>
-                            <li>- Jumlah tugas yang telah selesai</li>
-                            <li>- Progres target</li>
-                            <li>- Streak belajar</li>
-                        </ul>
-                        <a class="btn-link">Selengkapnya...</a>
-                    </div>
-                </div><div class="card">
-                        <div class="header">
-                    <div class="img-box">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-layout-dashboard-icon lucide-layout-dashboard"><rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/><rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="16" rx="1"/></svg>
-                            <path fill="none" d="M0 0h24v24H0z"></path>
-                            <path d="M20.083 15.2l1.202.721a.5.5 0 0 1 0 .858l-8.77 5.262a1 1 0 0 1-1.03 0l-8.77-5.262a.5.5 0 0 1 0-.858l1.202-.721L12 20.05l8.083-4.85zm0-4.7l1.202.721a.5.5 0 0 1 0 .858L12 17.65l-9.285-5.571a.5.5 0 0 1 0-.858l1.202-.721L12 15.35l8.083-4.85zm-7.569-9.191l8.771 5.262a.5.5 0 0 1 0 .858L12 13 2.715 7.429a.5.5 0 0 1 0-.858l8.77-5.262a1 1 0 0 1 1.03 0zM12 3.332L5.887 7 12 10.668 18.113 7 12 3.332z" fill="rgba(66,193,110,1)"></path>
-                        </svg>
-                    </div>
-                    <span class="title">DashBoard</span>
-                </div>
-                    <div class="content">
-                        <p>Dashboard ini menampilkan data statistik :</p>
-                        <ul>
-                            <li>- Jumlah jam belajar/hari</li>
-                            <li>- Jumlah tugas yang telah selesai</li>
-                            <li>- Progres target</li>
-                            <li>- Streak belajar</li>
-                        </ul>
-                        <a class="btn-link">Selengkapnya...</a>
+
+                <div class="feature-modal" id="feature-modal" aria-hidden="true">
+                    <div class="feature-modal-backdrop" data-close-feature-modal></div>
+                    <div class="feature-modal-dialog" role="dialog" aria-modal="true" aria-label="Detail fitur SoftiFy">
+                        <button class="feature-modal-close" type="button" aria-label="Tutup detail fitur" data-close-feature-modal>&times;</button>
+                        <div class="feature-modal-content"></div>
                     </div>
                 </div>
             </div>
+        </section>
+
+        <section class="cara-kerja" id="cara-kerja">
+            <div class="section-header scroll-fade">
+                <h2>Cara Kerja</h2>
+                <p>Ikuti langkah-langkah ini untuk mulai belajar lebih terarah bersama Softify.</p>
+            </div>
+
+            <div class="cara-steps">
+                @foreach ($displayHowItWorks as $index => $step)
+                    <div class="cara-step scroll-fade">
+                        <div class="cara-image">
+                            <img src="{{ asset('img/logo.png') }}" alt="Langkah {{ $index + 1 }} Softify">
+                        </div>
+                        <div class="cara-content">
+                            <h3>{{ $index + 1 }}. {{ $step['title'] }}</h3>
+                            <p>{{ $step['description'] }}</p>
+                        </div>
+                    </div>
+                @endforeach
             </div>
         </section>
-        <section class="tutorial">
-            <img src="{{ asset('img/tutor.png') }}" alt="Tutorial">
-        </section>
-        <section class="premium">
-            <div class="judul">
+
+        <section class="premium" id="premium">
+            <div class="judul scroll-fade">
                 <h2>Tingkatkan ke Premium</h2>
                 <p>Buka fitur eksklusif dan tingkatkan pengalaman belajar Anda dengan langganan premium kami.</p>
             </div>
-            <div class="card-premium">
-                <div class="card-premium1 free-plan">
-                    <div class="card1">                        
+
+            <div class="premium-grid">
+                <article class="plan-card free-plan scroll-fade">
+                    <div class="plan-head">
+                        <span class="plan-tag">Starter</span>
                         <h3>Paket Gratis</h3>
                         <p class="price">Gratis</p>
-                        <p>Cocok untuk pelajar yang ingin mulai mengatur kegiatan belajar dengan cara yang lebih terstruktur.</p>
+                        <p class="plan-desc">Cocok untuk pelajar yang ingin mulai mengatur kegiatan belajar dengan cara yang lebih terstruktur.</p>
                     </div>
-                    <hr>
-                    <ul>
-                        <li>Manajemen Tugas</li>
-                        <p>Fitur ini membantu Anda mengelola tugas belajar dengan lebih efisien.</p>
-                        <li>Target Belajar</li>
-                        <p>Fitur ini memungkinkan Anda menetapkan dan melacak target belajar Anda.</p>
-                        <li>AI Asisten</li>
-                        <p>Fitur ini menyediakan bantuan cerdas untuk menjawab pertanyaan, memberikan saran belajar, dan membantu Anda merencanakan jadwal belajar.</p>
-                        <li>Tantangan Belajar</li>
-                        <p>Fitur ini memberikan tantangan belajar yang menarik untuk meningkatkan motivasi dan keterlibatan Anda.</p>
-                        <li>Papan Peringkat</li>
-                        <p>Fitur ini memungkinkan Anda melihat performa belajar Anda dibandingkan dengan pengguna lain.</p>
-                    </ul>
-                    <a href="#" class="btn-free">Mulai</a>
-                </div>
-            </div>
-            <div class="card-premium">
-                <div class="card-premium1 premium-plan">
-                    <div class="card1">                        
-                        <h3>Paket Premium</h3>
-                        <p class="price"><span class="currency">Rp</span>49.000<span class="period">/bulan</span></p>
-                        <p>Untuk pelajar yang serius ingin memaksimalkan potensi belajar dengan fitur premium eksklusif.</p>
-                    </div>
-                    <hr>
-                    <ul>
-                        <li>Semua fitur Paket Gratis</li>
-                        <p>Akses penuh ke semua fitur dasar yang kuat.</p>
-                        <li>Analitik Lanjutan</li>
-                        <p>Laporan analisis mendalam tentang pola belajar dan performa Anda.</p>
-                        <li>Dukungan Prioritas</li>
-                        <p>Dukungan prioritas 24/7 dari tim ahli kami.</p>
-                        <li>Rencana Belajar Kustom</li>
-                        <p>Rencana belajar yang disesuaikan dengan gaya belajar Anda.</p>
-                        <li>Akses Offline</li>
-                        <p>Akses materi belajar bahkan tanpa koneksi internet.</p>
-                        <li>Penyimpanan Tak Terbatas</li>
-                        <p>Penyimpanan tak terbatas untuk file dan materi belajar Anda.</p>
-                    </ul>
-                    <a href="#" class="btn-premium">Tingkatkan Sekarang</a>
-                </div>
-            </div>
-        </section>
-        <section class="">
 
+                    <ul class="plan-features">
+                        <li>Manajemen tugas harian</li>
+                        <li>Target belajar mingguan</li>
+                        <li>AI Asisten dasar</li>
+                        <li>Tantangan belajar</li>
+                        <li>Papan peringkat komunitas</li>
+                    </ul>
+
+                    <a href="#" class="btn-free">Mulai Gratis</a>
+                </article>
+
+                <article class="plan-card premium-plan scroll-fade">
+                    <div class="plan-head">
+                        <span class="plan-tag plan-tag-premium">Best Value</span>
+                        <h3>Paket Premium</h3>
+                        <p class="price"><span class="currency">Rp</span>{{ number_format((int) $displayPremiumPrice, 0, ',', '.') }}<span class="period">/bulan</span></p>
+                        <p class="plan-desc">Untuk pelajar yang serius memaksimalkan potensi belajar dengan fitur premium eksklusif.</p>
+                    </div>
+
+                    <ul class="plan-features">
+                        @foreach ($displayPremiumFeatures as $feature)
+                            <li>{{ $feature }}</li>
+                        @endforeach
+                    </ul>
+
+                    <a href="#" class="btn-premium">Tingkatkan Sekarang</a>
+                </article>
+            </div>
         </section>
     </main>
 
     <script src="{{ asset('js/page.js') }}"></script>
 
-<footer class="footer-section">
-        <div class="container">
-            <div class="footer-cta pt-5 pb-5">
-                <div class="row">
-                    <div class="col-xl-4 col-md-4 mb-30">
-                        <div class="single-cta">
-                            <i class="fas fa-map-marker-alt"></i>
-                            <div class="cta-text">
-                                <h4>Temukan Kami</h4>
-                                <span>1010 Avenue, sw 54321, chandigarh</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-4 col-md-4 mb-30">
-                        <div class="single-cta">
-                            <i class="fas fa-phone"></i>
-                            <div class="cta-text">
-                                <h4>Telepon Kami</h4>
-                                <span>9876543210 0</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-4 col-md-4 mb-30">
-                        <div class="single-cta">
-                            <i class="far fa-envelope-open"></i>
-                            <div class="cta-text">
-                                <h4>Email Kami</h4>
-                                <span>mail@info.com</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+<footer class="footer">
+    <div class="footer-top">
+        <!-- Brand -->
+        <div class="footer-brand">
+            <h2 class="footer-logo-text">SOFTI<span>FY</span></h2>
+            <p class="footer-tagline">Platform produktivitas pelajar yang menggabungkan AI cerdas, gamifikasi motivasi, dan manajemen tugas dalam satu dashboard.</p>
+            <div class="footer-socials">
+                {{-- Instagram --}}
+                <a href="#" class="footer-social-link" aria-label="Instagram">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+                </a>
+                {{-- Twitter / X --}}
+                <a href="#" class="footer-social-link" aria-label="Twitter">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                </a>
+                {{-- YouTube --}}
+                <a href="#" class="footer-social-link" aria-label="YouTube">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                </a>
+                {{-- LinkedIn --}}
+                <a href="#" class="footer-social-link" aria-label="LinkedIn">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                </a>
             </div>
-            <div class="footer-content pt-5 pb-5">
-                <div class="row">
-                    <div class="col-xl-4 col-lg-4 mb-50">
-                        <div class="footer-widget">
-                            <div class="footer-logo">
-                                <a href="index.html"><img src="https://i.ibb.co/QDy827D/ak-logo.png" class="img-fluid" alt="logo"></a>
-                            </div>
-                            <div class="footer-text">
-                                <p>Softify membantu Anda mencatat kemajuan belajar, meningkatkan fokus, dan tetap termotivasi setiap hari.</p>
-                            </div>
-                            <div class="footer-social-icon">
-                                <span>Ikuti kami</span>
-                                <a href="#"><i class="fab fa-facebook-f facebook-bg"></i></a>
-                                <a href="#"><i class="fab fa-twitter twitter-bg"></i></a>
-                                <a href="#"><i class="fab fa-google-plus-g google-bg"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-4 col-lg-4 col-md-6 mb-30">
-                        <div class="footer-widget">
-                            <div class="footer-widget-heading">
-                                <h3>Link Berguna</h3>
-                            </div>
-                            <ul>
-                                <li><a href="#">Beranda</a></li>
-                                <li><a href="#">Tentang</a></li>
-                                <li><a href="#">Layanan</a></li>
-                                <li><a href="#">Portofolio</a></li>
-                                <li><a href="#">Kontak</a></li>
-                                <li><a href="#">Tentang Kami</a></li>
-                                <li><a href="#">Layanan Kami</a></li>
-                                <li><a href="#">Tim Ahli</a></li>
-                                <li><a href="#">Kontak Kami</a></li>
-                                <li><a href="#">Berita Terbaru</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-xl-4 col-lg-4 col-md-6 mb-50">
-                        <div class="footer-widget">
-                            <div class="footer-widget-heading">
-                                <h3>Berlangganan</h3>
-                            </div>
-                            <div class="footer-text mb-25">
-                                <p>Jangan lewatkan update terbaru kami, isi formulir di bawah ini.</p>
-                            </div>
-                            <div class="subscribe-form">
-                                <form action="#">
-                                    <input type="text" placeholder="Alamat Email">
-                                    <button><i class="fab fa-telegram-plane"></i></button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
+        </div>
+
+        <!-- Navigasi -->
+        <div class="footer-links-group">
+            <h4>Navigasi</h4>
+            <ul>
+                <li><a href="#">Beranda</a></li>
+                <li><a href="#">Fitur</a></li>
+                <li><a href="#">Cara Kerja</a></li>
+                <li><a href="#">Premium</a></li>
+                <li><a href="#">Tentang Kami</a></li>
+                <li><a href="#">Kontak</a></li>
+            </ul>
+        </div>
+
+        <!-- Fitur -->
+        <div class="footer-links-group">
+            <h4>Fitur</h4>
+            <ul>
+                <li><a href="{{ route('dashboard') }}">Dashboard Belajar</a></li>
+                <li><a href="#">AI Asisten</a></li>
+                <li><a href="#">Gamifikasi</a></li>
+                <li><a href="#">Manajemen Tugas</a></li>
+                <li><a href="#">Target Belajar</a></li>
+                <li><a href="#">Papan Peringkat</a></li>
+            </ul>
+        </div>
+
+        <!-- Newsletter -->
+        <div class="footer-newsletter">
+            <h4>Tetap Terhubung</h4>
+            <p>Dapatkan tips belajar dan update fitur terbaru langsung di email Anda.</p>
+            <form class="footer-subscribe-form" action="#">
+                <input type="email" placeholder="Alamat email Anda" required>
+                <button type="submit">Kirim</button>
+            </form>
+            <div class="footer-contact">
+                <div class="footer-contact-item">
+                    <span>📍</span>
+                    <span>Jakarta, Indonesia</span>
+                </div>
+                <div class="footer-contact-item">
+                    <span>✉️</span>
+                    <span>hello@softify.id</span>
+                </div>
+                <div class="footer-contact-item">
+                    <span>📞</span>
+                    <span>+62 812-3456-7890</span>
                 </div>
             </div>
         </div>
-        <div class="copyright-area">
-            <div class="container">
-                <div class="row">
-                    <div class="col-xl-6 col-lg-6 text-center text-lg-left">
-                        <div class="copyright-text">
-                            <p>Hak Cipta &copy; 2018, Semua Hak Dilindungi <a href="https://codepen.io/anupkumar92/">Anup</a></p>
-                        </div>
-                    </div>
-                    <div class="col-xl-6 col-lg-6 d-none d-lg-block text-right">
-                        <div class="footer-menu">
-                            <ul>
-                                <li><a href="#">Beranda</a></li>
-                                <li><a href="#">Ketentuan</a></li>
-                                <li><a href="#">Privasi</a></li>
-                                <li><a href="#">Kebijakan</a></li>
-                                <li><a href="#">Kontak</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
+    </div>
+
+    <div class="footer-bottom">
+        <p>&copy; 2024 SOFTIFY. Semua hak dilindungi.</p>
+        <ul class="footer-bottom-links">
+            <li><a href="#">Kebijakan Privasi</a></li>
+            <li><a href="#">Ketentuan Layanan</a></li>
+            <li><a href="#">Cookie</a></li>
+        </ul>
+    </div>
+</footer>
 </body>
 </html>
