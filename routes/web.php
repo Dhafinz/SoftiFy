@@ -14,7 +14,6 @@ use App\Http\Controllers\StudyTargetController;
 use App\Http\Controllers\TaskController;
 use App\Models\WebsiteSetting;
 use Illuminate\Support\Facades\Route;
-use App\Models\User;
 
 $pageViewData = static function (): array {
     $howItWorksRaw = WebsiteSetting::getValue('homepage_how_it_works', '');
@@ -100,41 +99,10 @@ Route::middleware(['auth', 'not.banned'])->group(function () {
     Route::post('/premium/activate', [PremiumController::class, 'activate'])->name('premium.activate');
 });
 
-<<<<<<< HEAD
 Route::middleware(['auth', 'not.banned', 'admin'])->prefix('admin')->name('admin.')->group(function () {
     Route::get('/dashboard', [AdminController::class, 'index'])->name('dashboard');
     Route::post('/settings', [AdminController::class, 'updateSettings'])->name('settings.update');
     Route::patch('/users/{user}/ban', [AdminController::class, 'toggleBan'])->name('users.ban.toggle');
     Route::patch('/users/{user}/premium', [AdminController::class, 'updatePremiumStatus'])->name('users.premium.update');
     Route::patch('/users/{user}/premium-toggle', [AdminController::class, 'togglePremium'])->name('users.premium.toggle');
-=======
-use App\Http\Controllers\AuthController;
-
-Route::get('/auth', function () {
-    return view('auth');
-});
-
-Route::post('/login', [AuthController::class, 'login'])->name('login');
-Route::post('/register', [AuthController::class, 'register'])->name('register');
-
-
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->name('dashboard');
-
-Route::get('/admin', function () {
-    $totalUsers = User::count();
-    $newRegistrations = User::where('created_at', '>=', now()->subDays(7))->count();
-    // For demo, reports and activity are static. Replace with real queries if needed.
-    $reports = 5;
-    $recentUsers = User::orderByDesc('created_at')->take(4)->get();
-    return view('admin_dashboard', [
-        'totalUsers' => $totalUsers,
-        'newRegistrations' => $newRegistrations,
-        'reports' => $reports,
-        'recentUsers' => $recentUsers,
-    ]);
-
-    
->>>>>>> 02419d06a0ab67eef11f7cdc62efad154ccf90c7
 });

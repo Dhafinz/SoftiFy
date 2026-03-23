@@ -332,102 +332,12 @@
     </style>
 </head>
 <body>
-<<<<<<< HEAD
 <header class="topbar">
     <div class="brand">
         <div class="logo-dot"></div>
         <div>
             <h1>SOFTIFY Dashboard</h1>
             <p>{{ auth()->user()->name }} • {{ auth()->user()->class_level ?: 'Pelajar SoftiFY' }}</p>
-=======
-
-<!-- SIDEBAR -->
-<aside class="sidebar">
-  <div class="sidebar-logo">
-    <div class="logo-icon">S</div>
-    <div>
-      <div class="logo-text">Softify</div>
-      <div class="logo-sub">Learning Dashboard</div>
-    </div>
-  </div>
-  <div class="sidebar-section-label">Menu</div>
-  <ul class="sidebar-nav">
-    <li class="active"><a href="#"><span class="nav-icon">⊞</span>Dashboard</a></li>
-    <li><a href="#"><span class="nav-icon">✓</span>Tugas</a></li>
-    <li><a href="#"><span class="nav-icon">📅</span>Jadwal</a></li>
-    <li><a href="#"><span class="nav-icon">📝</span>Catatan</a></li>
-    <li><a href="#"><span class="nav-icon">🎯</span>Target</a></li>
-  </ul>
-  <div class="sidebar-bottom">
-    <ul class="sidebar-nav">
-      <li><a href="#"><span class="nav-icon">⚙️</span>Pengaturan</a></li>
-      <li><a href="#"><span class="nav-icon">⏻</span>Keluar</a></li>
-    </ul>
-    <div class="sidebar-user">
-      <div class="user-avatar">A</div>
-      <div class="user-info">
-        <div class="user-name">Agus Ibad</div>
-        <div class="user-role">Pelajar Aktif</div>
-      </div>
-      <div class="user-dots">···</div>
-    </div>
-  </div>
-</aside>
-
-<!-- MAIN -->
-<main class="main">
-  <div class="topbar">
-    <span class="topbar-title">Dashboard</span>
-    <button class="btn-primary">+ Catat Sesi</button>
-  </div>
-
-  <div class="content">
-
-    <!-- PAGE HEADER -->
-    <div class="page-header">
-      <div>
-        <h1>Dashboard Belajar</h1>
-        <p>Selamat datang kembali, Agus 👋 — Tetap semangat hari ini!</p>
-      </div>
-      <div class="streak-badge" id="header-streak-badge">🔥 Streak: 0 hari berturut-turut</div>
-    </div>
-
-    <!-- STAT CARDS -->
-    <div class="stat-cards">
-      <div class="stat-card">
-        <div class="stat-label">Jam Belajar Hari Ini <div class="stat-icon blue">🕐</div></div>
-        <div class="stat-value">4.5</div>
-        <div class="stat-footer"><span>target: 6 jam</span><span class="badge-small badge-blue">↑ +0.5 jam</span></div>
-      </div>
-      <div class="stat-card green">
-        <div class="stat-label">Tugas Selesai <div class="stat-icon green">✅</div></div>
-        <div class="stat-value" id="stat-tugas">7</div>
-        <div class="stat-footer"><span>dari 10 tugas</span><span class="badge-small badge-green" id="stat-pct-badge">70% selesai</span></div>
-      </div>
-      <div class="stat-card orange">
-        <div class="stat-label">Progress Mingguan <div class="stat-icon orange">📊</div></div>
-        <div class="stat-value">68%</div>
-        <div class="stat-footer"><span>24 / 35 jam</span><span class="badge-small badge-orange">→ 11 jam lagi</span></div>
-      </div>
-      <div class="stat-card purple">
-        <div class="stat-label">Streak Belajar <div class="stat-icon purple">🔥</div></div>
-        <div class="stat-value" id="stat-streak">0</div>
-        <div class="stat-footer"><span>hari berturut-turut</span><span class="badge-small badge-purple">🏆 Rekor!</span></div>
-      </div>
-    </div>
-
-    <!-- MID ROW -->
-    <div class="mid-row">
-
-      <!-- Bar Chart -->
-      <div class="card">
-        <div class="card-header">
-          <div>
-            <div class="card-title">Jam Belajar per Hari</div>
-            <div class="card-sub">Minggu ini — total 24 jam</div>
-          </div>
-          <a class="link-btn">Lihat Semua</a>
->>>>>>> 02419d06a0ab67eef11f7cdc62efad154ccf90c7
         </div>
     </div>
     <form action="{{ route('logout') }}" method="POST">
