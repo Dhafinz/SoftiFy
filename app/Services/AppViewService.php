@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\User;
+use App\Models\StudyTarget;
 use Illuminate\Support\Carbon;
 
 class AppViewService
@@ -52,7 +53,7 @@ class AppViewService
 
         $weeklyUnfinished = $user->studyTargets()
             ->where('period_type', 'weekly')
-            ->where('is_completed', false)
+            ->where('status', StudyTarget::STATUS_ACTIVE)
             ->count();
 
         if ($weeklyUnfinished > 0) {

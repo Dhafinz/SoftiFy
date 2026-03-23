@@ -10,7 +10,8 @@ use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\PremiumController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\StudySessionController;
-use App\Http\Controllers\StudyTargetController;
+use App\Http\Controllers\TargetController;
+use App\Http\Controllers\TargetLogController;
 use App\Http\Controllers\TaskController;
 use App\Models\WebsiteSetting;
 use Illuminate\Support\Facades\Route;
@@ -68,7 +69,7 @@ Route::middleware('guest')->group(function () {
 Route::middleware(['auth', 'not.banned'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('/tasks', [TaskController::class, 'index'])->name('tasks.index');
-    Route::get('/targets', [StudyTargetController::class, 'index'])->name('targets.index');
+    Route::get('/targets', [TargetController::class, 'index'])->name('targets.index');
     Route::get('/ai-assistant', [AiAssistantController::class, 'index'])->name('ai.index');
     Route::get('/challenge', [ChallengeController::class, 'index'])->name('challenge.index');
     Route::get('/leaderboard', [LeaderboardController::class, 'index'])->name('leaderboard.index');
@@ -83,10 +84,11 @@ Route::middleware(['auth', 'not.banned'])->group(function () {
     Route::patch('/tasks/{task}/toggle', [TaskController::class, 'toggle'])->name('tasks.toggle');
     Route::delete('/tasks/{task}', [TaskController::class, 'destroy'])->name('tasks.destroy');
 
-    Route::post('/targets', [StudyTargetController::class, 'store'])->name('targets.store');
-    Route::patch('/targets/{target}', [StudyTargetController::class, 'update'])->name('targets.update');
-    Route::patch('/targets/{target}/progress', [StudyTargetController::class, 'updateProgress'])->name('targets.progress');
-    Route::delete('/targets/{target}', [StudyTargetController::class, 'destroy'])->name('targets.destroy');
+    Route::post('/targets', [TargetController::class, 'store'])->name('targets.store');
+    Route::patch('/targets/{target}', [TargetController::class, 'update'])->name('targets.update');
+    Route::post('/targets/{target}/logs', [TargetLogController::class, 'store'])->name('targets.logs.store');
+    Route::patch('/targets/{target}/progress', [TargetLogController::class, 'store'])->name('targets.progress');
+    Route::delete('/targets/{target}', [TargetController::class, 'destroy'])->name('targets.destroy');
 
     Route::post('/study-sessions', [StudySessionController::class, 'store'])->name('study-session.store');
     Route::post('/challenge/sessions', [ChallengeController::class, 'storeSession'])->name('challenge.sessions.store');

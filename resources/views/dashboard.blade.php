@@ -478,15 +478,22 @@
 
         <article class="card panel">
             <h3>Target Belajar</h3>
-            <p>Pantau progress target agar konsisten dengan rencana belajar.</p>
+            <p>Pantau progress target agar konsisten dengan rencana belajar berbasis rentang waktu.</p>
             <form method="POST" action="{{ route('targets.store') }}">
                 @csrf
                 <input type="text" name="title" required placeholder="Nama target">
                 <div class="form-row">
+                    <select name="period_type" required>
+                        <option value="daily">Harian</option>
+                        <option value="weekly" selected>Mingguan</option>
+                        <option value="monthly">Bulanan</option>
+                    </select>
                     <input type="number" name="target_hours" min="1" max="2000" placeholder="Target jam" required>
-                    <input type="number" name="current_hours" min="0" max="2000" placeholder="Jam saat ini">
                 </div>
-                <input type="date" name="deadline">
+                <div class="form-row">
+                    <input type="date" name="start_date" value="{{ now()->toDateString() }}" required>
+                    <input type="date" name="end_date" value="{{ now()->addWeek()->toDateString() }}" required>
+                </div>
                 <button class="btn btn-primary" type="submit">Tambah Target</button>
             </form>
 
@@ -494,19 +501,30 @@
                 @forelse ($targets as $target)
                     @php
                         $progress = $target->target_hours > 0 ? min(100, (int) round(($target->current_hours / $target->target_hours) * 100)) : 0;
+                        $statusText = $target->status === 'completed' ? 'Completed' : ($target->status === 'expired' ? 'Expired' : 'Active');
+                        $statusStyle = $target->status === 'completed'
+                            ? 'background: #dcfce7; color: #166534;'
+                            : ($target->status === 'expired' ? 'background: #fee2e2; color: #991b1b;' : 'background: #dbeafe; color: #1e3a8a;');
                     @endphp
                     <div class="item" style="grid-template-columns: 1fr;">
                         <div>
                             <h4>{{ $target->title }}</h4>
-                            <p>{{ $target->current_hours }} / {{ $target->target_hours }} jam • deadline {{ $target->deadline ? $target->deadline->format('d M Y') : '-' }}</p>
+                            <p>
+                                {{ $target->current_hours }} / {{ $target->target_hours }} jam •
+                                {{ $target->start_date ? $target->start_date->format('d M Y') : '-' }} s/d {{ $target->end_date ? $target->end_date->format('d M Y') : '-' }}
+                            </p>
+                            <p>
+                                <span style="{{ $statusStyle }} padding: 3px 8px; border-radius: 999px; font-size: 11px; font-weight: 600;">{{ $statusText }}</span>
+                            </p>
                             <div class="target-bar"><span style="width: {{ $progress }}%"></span></div>
                         </div>
                         <div class="actions" style="justify-content: flex-start;">
-                            <form method="POST" action="{{ route('targets.progress', $target) }}" style="display: flex; gap: 6px; align-items: center;">
+                            <form method="POST" action="{{ route('targets.progress', $target) }}" style="display: grid; gap: 6px; align-items: center; grid-template-columns: minmax(90px, 120px) minmax(0, 1fr) auto; width: 100%;">
                                 @csrf
                                 @method('PATCH')
-                                <input type="number" name="current_hours" min="0" max="2000" value="{{ $target->current_hours }}" style="margin: 0; max-width: 120px;">
-                                <button type="submit" class="btn btn-soft">Update</button>
+                                <input type="number" name="added_hours" min="1" max="2000" placeholder="+ jam" style="margin: 0;">
+                                <input type="text" name="note" placeholder="Catatan belajar (opsional)" style="margin: 0;">
+                                <button type="submit" class="btn btn-soft" {{ $target->status !== 'active' ? 'disabled' : '' }}>Tambah</button>
                             </form>
                             <form method="POST" action="{{ route('targets.destroy', $target) }}" onsubmit="return confirm('Hapus target ini?')">
                                 @csrf
@@ -514,6 +532,18 @@
                                 <button type="submit" class="btn btn-danger">Hapus</button>
                             </form>
                         </div>
+                        @if ($target->logs->isNotEmpty())
+                            <details style="margin-top: 4px;">
+                                <summary style="cursor: pointer; color: var(--primary-dark); font-size: 12px; font-weight: 600;">Riwayat Progress</summary>
+                                <ul class="session-list" style="margin: 6px 0 0; padding-left: 0; list-style: none;">
+                                    @foreach ($target->logs as $log)
+                                        <li>
+                                            <span>{{ $log->date->format('d M Y') }} • +{{ $log->added_hours }} jam{{ $log->note ? ' - ' . $log->note : '' }}</span>
+                                        </li>
+                                    @endforeach
+                                </ul>
+                            </details>
+                        @endif
                     </div>
                 @empty
                     <p style="margin: 8px 0 0; color: var(--muted); font-size: 13px;">Belum ada target belajar.</p>

@@ -13,8 +13,10 @@
                 <option value="monthly">Bulanan</option>
             </select>
             <input type="number" name="target_hours" min="1" class="w-full rounded-xl border-slate-300" placeholder="Target jam" required>
-            <input type="number" name="current_hours" min="0" class="w-full rounded-xl border-slate-300" placeholder="Jam tercapai">
-            <input type="date" name="deadline" class="w-full rounded-xl border-slate-300">
+            <div class="grid gap-2 sm:grid-cols-2">
+                <input type="date" name="start_date" value="{{ now()->toDateString() }}" class="w-full rounded-xl border-slate-300" required>
+                <input type="date" name="end_date" value="{{ now()->addWeek()->toDateString() }}" class="w-full rounded-xl border-slate-300" required>
+            </div>
             <button class="w-full rounded-xl bg-softi-600 text-white py-2">Simpan Target</button>
         </form>
     </div>
@@ -28,20 +30,31 @@
                     <div class="flex items-center justify-between">
                         <div>
                             <p class="font-medium">{{ $target->title }}</p>
-                            <p class="text-xs text-slate-500">{{ ucfirst($target->period_type) }} • Deadline {{ $target->deadline?->format('d M Y') ?: '-' }}</p>
+                            <p class="text-xs text-slate-500">{{ ucfirst($target->period_type) }} • {{ $target->start_date?->format('d M Y') ?: '-' }} s/d {{ $target->end_date?->format('d M Y') ?: '-' }}</p>
                         </div>
-                        <span class="text-xs px-2 py-1 rounded-full {{ $target->is_completed ? 'bg-emerald-100 text-emerald-700' : 'bg-amber-100 text-amber-700' }}">{{ $target->is_completed ? 'Selesai' : 'Belum' }}</span>
+                        <span class="text-xs px-2 py-1 rounded-full {{ $target->status === 'completed' ? 'bg-emerald-100 text-emerald-700' : ($target->status === 'expired' ? 'bg-red-100 text-red-700' : 'bg-blue-100 text-blue-700') }}">{{ ucfirst($target->status) }}</span>
                     </div>
 
                     <div class="h-2 bg-slate-200 rounded-full overflow-hidden"><div class="h-2 bg-gradient-to-r from-softi-600 to-blue-600" style="width: {{ $pct }}%"></div></div>
                     <p class="text-xs text-slate-500">{{ $target->current_hours }}/{{ $target->target_hours }} jam ({{ $pct }}%)</p>
 
-                    <form action="{{ route('targets.progress', $target) }}" method="POST" class="flex gap-2">
+                    <form action="{{ route('targets.logs.store', $target) }}" method="POST" class="grid gap-2 sm:grid-cols-[140px_1fr_auto]">
                         @csrf
-                        @method('PATCH')
-                        <input type="number" min="0" max="2000" name="current_hours" value="{{ $target->current_hours }}" class="flex-1 rounded-xl border-slate-300">
-                        <button class="rounded-xl bg-indigo-600 text-white px-3">Update Progress</button>
+                        <input type="number" min="1" max="2000" name="added_hours" placeholder="Tambah jam" class="rounded-xl border-slate-300" required>
+                        <input type="text" name="note" placeholder="Catatan belajar (opsional)" class="rounded-xl border-slate-300">
+                        <button class="rounded-xl bg-indigo-600 text-white px-3 disabled:opacity-50" {{ $target->status !== 'active' ? 'disabled' : '' }}>Tambah</button>
                     </form>
+
+                    @if ($target->logs->isNotEmpty())
+                        <details>
+                            <summary class="cursor-pointer text-xs text-softi-700">Riwayat log</summary>
+                            <ul class="mt-2 space-y-1">
+                                @foreach ($target->logs as $log)
+                                    <li class="text-xs text-slate-600">{{ $log->date->format('d M Y') }} • +{{ $log->added_hours }} jam @if($log->note) • {{ $log->note }} @endif</li>
+                                @endforeach
+                            </ul>
+                        </details>
+                    @endif
 
                     <details>
                         <summary class="cursor-pointer text-xs text-softi-700">Edit target</summary>
@@ -55,8 +68,8 @@
                                 <option value="monthly" @selected($target->period_type==='monthly')>Bulanan</option>
                             </select>
                             <input type="number" name="target_hours" min="1" value="{{ $target->target_hours }}" class="rounded-xl border-slate-300" required>
-                            <input type="number" name="current_hours" min="0" value="{{ $target->current_hours }}" class="rounded-xl border-slate-300" required>
-                            <input type="date" name="deadline" value="{{ $target->deadline?->toDateString() }}" class="rounded-xl border-slate-300 sm:col-span-2">
+                            <input type="date" name="start_date" value="{{ $target->start_date?->toDateString() }}" class="rounded-xl border-slate-300" required>
+                            <input type="date" name="end_date" value="{{ $target->end_date?->toDateString() }}" class="rounded-xl border-slate-300" required>
                             <button class="sm:col-span-2 rounded-xl bg-softi-600 text-white py-2 text-sm">Simpan Perubahan</button>
                         </form>
                     </details>

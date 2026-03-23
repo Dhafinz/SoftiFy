@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\StudySession;
+use App\Models\StudyTarget;
 use App\Models\User;
 use App\Services\AppViewService;
 use Carbon\Carbon;
@@ -31,6 +32,8 @@ class DashboardController extends Controller
         $todayCompletedCount = (clone $todayTasksQuery)->where('is_done', true)->count();
 
         $targetProgress = $this->appView->targetProgressPercent($user);
+
+        StudyTarget::syncStatusesForUser($user);
 
         $weekMinutes = (int) $user->studySessions()
             ->whereBetween('study_date', [$startOfWeek->toDateString(), $endOfWeek->toDateString()])
@@ -61,7 +64,13 @@ class DashboardController extends Controller
             ->latest('id')
             ->limit(6)
             ->get();
-        $targets = $user->studyTargets()->latest('id')->limit(4)->get();
+        $targets = $user->studyTargets()
+            ->with(['logs' => fn ($query) => $query->latest('date')->latest('id')])
+            ->orderByRaw("CASE status WHEN 'active' THEN 0 WHEN 'expired' THEN 1 ELSE 2 END")
+            ->orderBy('end_date')
+            ->latest('id')
+            ->limit(4)
+            ->get();
         $latestSessions = $user->studySessions()->latest('study_date')->latest('id')->limit(4)->get();
 
         $todayAllDone = $todayTaskCount > 0 && $todayTaskCount === $todayCompletedCount;

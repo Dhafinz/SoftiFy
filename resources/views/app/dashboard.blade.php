@@ -69,12 +69,15 @@
                 <div class="rounded-xl border border-slate-200 p-3">
                     <div class="flex items-center justify-between">
                         <p class="text-sm font-medium">{{ $target->title }}</p>
-                        <span class="text-xs text-slate-500 uppercase">{{ $target->period_type }}</span>
+                        <span class="text-xs px-2 py-1 rounded-full {{ $target->status === 'completed' ? 'bg-emerald-100 text-emerald-700' : ($target->status === 'expired' ? 'bg-red-100 text-red-700' : 'bg-blue-100 text-blue-700') }}">
+                            {{ ucfirst($target->status) }}
+                        </span>
                     </div>
                     <div class="h-2 bg-slate-200 rounded-full mt-2 overflow-hidden">
                         <div class="h-2 bg-gradient-to-r from-softi-600 to-blue-600" style="width: {{ $pct }}%"></div>
                     </div>
                     <p class="text-xs text-slate-500 mt-1">{{ $target->current_hours }}/{{ $target->target_hours }} jam • {{ $pct }}%</p>
+                    <p class="text-xs text-slate-500 mt-1">{{ $target->start_date?->format('d M Y') ?: '-' }} s/d {{ $target->end_date?->format('d M Y') ?: '-' }}</p>
                 </div>
             @empty
                 <p class="text-sm text-slate-500">Belum ada target.</p>
