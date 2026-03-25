@@ -4,6 +4,7 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -85,6 +86,11 @@ class User extends Authenticatable
         return $this->hasMany(Note::class);
     }
 
+    public function diaries(): HasMany
+    {
+        return $this->hasMany(Diary::class);
+    }
+
     public function studyTargets(): HasMany
     {
         return $this->hasMany(StudyTarget::class);
@@ -103,5 +109,40 @@ class User extends Authenticatable
     public function aiMessages(): HasMany
     {
         return $this->hasMany(AiMessage::class);
+    }
+
+    public function sentMessages(): HasMany
+    {
+        return $this->hasMany(Message::class, 'sender_id');
+    }
+
+    public function receivedMessages(): HasMany
+    {
+        return $this->hasMany(Message::class, 'receiver_id');
+    }
+
+    public function sentFriendRequests(): HasMany
+    {
+        return $this->hasMany(Friend::class, 'user_id');
+    }
+
+    public function receivedFriendRequests(): HasMany
+    {
+        return $this->hasMany(Friend::class, 'friend_id');
+    }
+
+    public function friendsQuery(): Builder
+    {
+        return static::query()
+            ->where('id', '!=', $this->id)
+            ->whereIn('id', function ($query) {
+                $query->selectRaw('CASE WHEN user_id = ? THEN friend_id ELSE user_id END', [$this->id])
+                    ->from('friends')
+                    ->where('status', Friend::STATUS_ACCEPTED)
+                    ->where(function ($q) {
+                        $q->where('user_id', $this->id)
+                            ->orWhere('friend_id', $this->id);
+                    });
+            });
     }
 }

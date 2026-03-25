@@ -29,7 +29,7 @@ class PremiumController extends Controller
             ->values()
             ->all();
 
-        return view('app.premium', compact('user', 'notifications', 'title', 'premiumPriceMonthly', 'premiumFeatureLines'));
+        return view('premium', compact('user', 'notifications', 'title', 'premiumPriceMonthly', 'premiumFeatureLines'));
     }
 
     public function activate(Request $request)
@@ -55,6 +55,6 @@ class PremiumController extends Controller
             'premium_payment_submitted_at' => now(),
         ]);
 
-        return redirect()->route('premium.index')->with('success', 'Bukti pembayaran berhasil dikirim. Tim kami akan verifikasi pembayaran kamu melalui email.');
+        return redirect()->route('premium')->with('success', 'Bukti pembayaran berhasil dikirim. Tim kami akan verifikasi pembayaran kamu melalui email.');
     }
 }

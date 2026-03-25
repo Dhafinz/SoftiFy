@@ -39,6 +39,10 @@
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path d="M10.75 2.5a.75.75 0 00-1.5 0v.757a7.5 7.5 0 00-5.493 5.493H3a.75.75 0 000 1.5h.757a7.5 7.5 0 005.493 5.493V17a.75.75 0 001.5 0v-.757a7.5 7.5 0 005.493-5.493H17a.75.75 0 000-1.5h-.757a7.5 7.5 0 00-5.493-5.493V2.5z"/></svg>
                 Dashboard Admin
             </a>
+            <a href="{{ route('admin.users.list') }}" class="flex items-center gap-2 rounded-xl px-3 py-2 text-blue-100 hover:bg-white/10 hover:text-white transition">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 8a7 7 0 1114 0H3z"/></svg>
+                Manajemen User
+            </a>
             <a href="#settings" class="flex items-center gap-2 rounded-xl px-3 py-2 text-blue-100 hover:bg-white/10 hover:text-white transition">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M7.84 1.804a1 1 0 011.32.54l.148.4a1 1 0 00.95.676h.484a1 1 0 00.95-.676l.148-.4a1 1 0 011.86.682l-.149.4a1 1 0 00.274 1.118l.343.342a1 1 0 001.118.274l.4-.149a1 1 0 11.682 1.86l-.4.148a1 1 0 00-.676.95v.484a1 1 0 00.676.95l.4.148a1 1 0 11-.682 1.86l-.4-.149a1 1 0 00-1.118.274l-.343.342a1 1 0 00-.274 1.118l.149.4a1 1 0 11-1.86.682l-.148-.4a1 1 0 00-.95-.676h-.484a1 1 0 00-.95.676l-.148.4a1 1 0 11-1.86-.682l.149-.4a1 1 0 00-.274-1.118l-.343-.342a1 1 0 00-1.118-.274l-.4.149a1 1 0 11-.682-1.86l.4-.148a1 1 0 00.676-.95v-.484a1 1 0 00-.676-.95l-.4-.148a1 1 0 11.682-1.86l.4.149a1 1 0 001.118-.274l.343-.342a1 1 0 00.274-1.118l-.149-.4a1 1 0 01.54-1.32zM10 13a3 3 0 100-6 3 3 0 000 6z" clip-rule="evenodd"/></svg>
                 Pengaturan Website
@@ -46,10 +50,6 @@
             <a href="#premium-verify" class="flex items-center gap-2 rounded-xl px-3 py-2 text-blue-100 hover:bg-white/10 hover:text-white transition">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path d="M10 2l2.12 4.296 4.743.689-3.431 3.344.81 4.724L10 12.824l-4.242 2.23.81-4.724L3.137 6.985l4.743-.689L10 2z"/></svg>
                 Verifikasi Premium
-            </a>
-            <a href="#user-management" class="flex items-center gap-2 rounded-xl px-3 py-2 text-blue-100 hover:bg-white/10 hover:text-white transition">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 8a7 7 0 1114 0H3z" clip-rule="evenodd"/></svg>
-                Manajemen User
             </a>
             <a href="{{ route('page') }}" class="flex items-center gap-2 rounded-xl px-3 py-2 text-blue-100 hover:bg-white/10 hover:text-white transition">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path d="M4 3a1 1 0 00-1 1v12a1 1 0 001.447.894L10 14.118l5.553 2.776A1 1 0 0017 16V4a1 1 0 00-1-1H4z"/></svg>

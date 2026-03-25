@@ -24,7 +24,7 @@
             <p><span class="text-slate-500">Streak:</span> 🔥 {{ $user->current_streak }} hari</p>
             <p><span class="text-slate-500">Plan:</span> {{ $user->is_premium ? 'Premium' : 'Free' }}</p>
         </div>
-        <a href="{{ route('premium.index') }}" class="inline-flex mt-2 rounded-lg bg-softi-600 text-white px-3 py-1 text-xs">Buka Premium</a>
+        <a href="{{ route('premium') }}" class="inline-flex mt-2 rounded-lg bg-softi-600 text-white px-3 py-1 text-xs">Buka Premium</a>
     </div>
 </div>
 @endsection

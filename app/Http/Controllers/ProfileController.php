@@ -20,7 +20,7 @@ class ProfileController extends Controller
         $notifications = $this->appView->notifications($user);
         $title = 'Profile User';
 
-        return view('app.profile', compact('user', 'notifications', 'title'));
+        return view('profile', compact('user', 'notifications', 'title'));
     }
 
     public function update(Request $request)

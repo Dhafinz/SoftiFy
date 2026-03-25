@@ -65,7 +65,7 @@
             <p class="font-semibold text-slate-700">Paket kamu: {{ $user->is_premium ? 'Premium' : 'Free' }}</p>
             <p class="text-slate-600">Limit generate hari ini: maksimal {{ $scheduleLimit }} task.</p>
             @if (! $user->is_premium)
-                <a href="{{ route('premium.index') }}" class="inline-flex mt-2 text-xs px-3 py-1 rounded-lg bg-softi-600 text-white">Upgrade Premium</a>
+                <a href="{{ route('premium') }}" class="inline-flex mt-2 text-xs px-3 py-1 rounded-lg bg-softi-600 text-white">Upgrade Premium</a>
             @endif
         </div>
         <form action="{{ route('ai.generate.today') }}" method="POST">

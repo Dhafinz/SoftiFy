@@ -18,23 +18,23 @@
 <div class="grid gap-4 md:grid-cols-4">
     <div class="rounded-2xl bg-gradient-to-br from-slate-900 to-slate-800 text-white p-4 shadow-lg shadow-slate-900/20">
         <p class="text-xs text-slate-300 uppercase tracking-wide">Total User</p>
-        <p class="text-3xl font-black mt-1">{{ $users->count() }}</p>
+        <p class="text-3xl font-black mt-1">{{ $totalUsers }}</p>
         <p class="text-xs text-slate-300 mt-2">Semua akun non-admin</p>
     </div>
     <div class="rounded-2xl bg-gradient-to-br from-emerald-500 to-teal-600 text-white p-4 shadow-lg shadow-emerald-500/25">
         <p class="text-xs text-emerald-100 uppercase tracking-wide">User Premium</p>
-        <p class="text-3xl font-black mt-1">{{ $users->where('is_premium', true)->count() }}</p>
+        <p class="text-3xl font-black mt-1">{{ $totalPremiumUsers }}</p>
         <p class="text-xs text-emerald-100 mt-2">Sudah berlangganan</p>
     </div>
     <div class="rounded-2xl bg-gradient-to-br from-amber-400 to-orange-500 text-white p-4 shadow-lg shadow-amber-500/25">
-        <p class="text-xs text-amber-100 uppercase tracking-wide">Pending Premium</p>
-        <p class="text-3xl font-black mt-1">{{ $pendingPremiumUsers->count() }}</p>
-        <p class="text-xs text-amber-100 mt-2">Menunggu ACC admin</p>
+        <p class="text-xs text-amber-100 uppercase tracking-wide">Total Task</p>
+        <p class="text-3xl font-black mt-1">{{ $totalTasks }}</p>
+        <p class="text-xs text-amber-100 mt-2">Seluruh platform</p>
     </div>
     <div class="rounded-2xl bg-gradient-to-br from-rose-500 to-red-600 text-white p-4 shadow-lg shadow-rose-500/25">
-        <p class="text-xs text-rose-100 uppercase tracking-wide">User Diblokir</p>
-        <p class="text-3xl font-black mt-1">{{ $users->where('is_banned', true)->count() }}</p>
-        <p class="text-xs text-rose-100 mt-2">Status ban aktif</p>
+        <p class="text-xs text-rose-100 uppercase tracking-wide">Total Session</p>
+        <p class="text-3xl font-black mt-1">{{ $totalSessions }}</p>
+        <p class="text-xs text-rose-100 mt-2">Study sessions</p>
     </div>
 </div>
 
@@ -108,7 +108,9 @@
             <h2 class="text-lg font-semibold text-slate-800">Manajemen User</h2>
             <p class="text-sm text-slate-500">Kelola status premium dan ban user.</p>
         </div>
-        <span class="text-xs px-3 py-1 rounded-full bg-slate-100 text-slate-700">{{ $users->count() }} user terdaftar</span>
+        <a href="{{ route('admin.users.list') }}" class="rounded-lg bg-softi-600 hover:bg-softi-700 text-white px-3 py-1.5 text-sm font-semibold transition">
+            Kelola User Lengkap →
+        </a>
     </div>
 
     <div class="overflow-x-auto">
@@ -139,14 +141,17 @@
                         </td>
                         <td class="py-3 pr-3">
                             <div class="flex flex-wrap gap-2">
-                                <form action="{{ route('admin.users.premium.toggle', $user) }}" method="POST">
+                                <a href="{{ route('admin.users.edit', $user) }}" class="rounded-lg px-3 py-1.5 text-xs font-semibold bg-blue-600 hover:bg-blue-700 text-white transition">
+                                    Edit
+                                </a>
+                                <form action="{{ route('admin.users.premium.toggle', $user) }}" method="POST" class="inline">
                                     @csrf
                                     @method('PATCH')
                                     <button type="submit" class="rounded-lg px-3 py-1.5 text-xs font-semibold transition {{ $user->is_premium ? 'bg-amber-500 hover:bg-amber-600 text-white' : 'bg-emerald-600 hover:bg-emerald-700 text-white' }}">
                                         {{ $user->is_premium ? 'Jadikan Free' : 'Jadikan Premium' }}
                                     </button>
                                 </form>
-                                <form action="{{ route('admin.users.ban.toggle', $user) }}" method="POST">
+                                <form action="{{ route('admin.users.ban.toggle', $user) }}" method="POST" class="inline">
                                     @csrf
                                     @method('PATCH')
                                     <button type="submit" class="rounded-lg px-3 py-1.5 text-xs font-semibold transition {{ $user->is_banned ? 'bg-slate-800 hover:bg-slate-900 text-white' : 'bg-red-600 hover:bg-red-700 text-white' }}">

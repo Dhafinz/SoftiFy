@@ -43,7 +43,7 @@ class AppPagesSmokeTest extends TestCase
             ->assertOk();
 
         $this->actingAs($user)
-            ->get(route('profile.index'))
+            ->get(route('profile'))
             ->assertOk();
     }
 

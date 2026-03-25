@@ -2,6 +2,8 @@
 
 namespace App\Services;
 
+use App\Models\Friend;
+use App\Models\Message;
 use App\Models\User;
 use App\Models\StudyTarget;
 use Illuminate\Support\Carbon;
@@ -67,6 +69,30 @@ class AppViewService
             $items[] = [
                 'type' => 'danger',
                 'text' => 'Streak hampir hilang. Selesaikan task hari ini untuk menjaga streak.',
+            ];
+        }
+
+        $incomingFriendRequests = Friend::query()
+            ->where('friend_id', $user->id)
+            ->where('status', Friend::STATUS_PENDING)
+            ->count();
+
+        if ($incomingFriendRequests > 0) {
+            $items[] = [
+                'type' => 'info',
+                'text' => "Ada {$incomingFriendRequests} request pertemanan baru.",
+            ];
+        }
+
+        $unreadPrivateMessages = Message::query()
+            ->where('receiver_id', $user->id)
+            ->whereNull('read_at')
+            ->count();
+
+        if ($unreadPrivateMessages > 0) {
+            $items[] = [
+                'type' => 'warning',
+                'text' => "Ada {$unreadPrivateMessages} pesan chat pribadi belum dibaca.",
             ];
         }
 

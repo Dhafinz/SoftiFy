@@ -17,12 +17,12 @@
         $displayHowItWorks = !empty($howItWorksSteps ?? [])
             ? $howItWorksSteps
             : [
-                ['title' => 'Login terlebih dahulu', 'description' => 'Masuk ke akun Anda untuk membuka dashboard belajar, melihat progres, dan mengakses semua fitur yang sudah dipersonalisasi.'],
-                ['title' => 'Atur jadwal belajar', 'description' => 'Tentukan waktu belajar harian sesuai ritme Anda. Sistem akan membantu menjaga konsistensi dengan pengingat otomatis.'],
-                ['title' => 'Buat target mingguan', 'description' => 'Susun target yang jelas agar fokus belajar lebih terarah. Anda bisa memantau progres setiap target secara real-time.'],
-                ['title' => 'Selesaikan tugas harian', 'description' => 'Kerjakan daftar tugas satu per satu dan tandai yang selesai. Setiap pencapaian akan masuk ke statistik produktivitas Anda.'],
-                ['title' => 'Gunakan AI Asisten', 'description' => 'Tanyakan materi, minta ringkasan, atau rekomendasi strategi belajar. AI Asisten membantu Anda belajar lebih cepat dan efektif.'],
-                ['title' => 'Review progres rutin', 'description' => 'Lihat perkembangan streak, jam belajar, dan capaian target. Dari sana Anda bisa evaluasi dan optimalkan strategi belajar berikutnya.'],
+                ['title' => 'Masuk dan lengkapi profil belajar', 'description' => 'Login ke akun SoftiFy untuk membuka dashboard pribadi, mengatur preferensi belajar, dan memulai alur yang sudah dipersonalisasi.'],
+                ['title' => 'Rencanakan tugas dan jadwal harian', 'description' => 'Susun prioritas belajar harian di Task Manager agar waktu belajar, deadline, dan sesi fokus lebih terkontrol.'],
+                ['title' => 'Catat progres di Diary', 'description' => 'Tulis catatan harian, refleksi materi, dan insight belajar agar perkembangan Anda terdokumentasi dengan rapi dari waktu ke waktu.'],
+                ['title' => 'Belajar kolaboratif lewat fitur teman', 'description' => 'Tambahkan teman, bangun koneksi, dan lanjutkan diskusi melalui chat privat untuk saling dukung mencapai target belajar.'],
+                ['title' => 'Optimalkan dengan AI dan notifikasi', 'description' => 'Gunakan AI Asisten untuk strategi belajar dan biarkan notifikasi cerdas menjaga konsistensi sesi harian Anda.'],
+                ['title' => 'Naikkan level dengan Premium dan evaluasi', 'description' => 'Aktifkan Premium untuk fitur lanjutan, lalu review statistik secara rutin agar strategi belajar tetap efektif.'],
             ];
 
         $displayPremiumPrice = $premiumPriceMonthly ?? 49000;
@@ -103,7 +103,7 @@
                 <div class="feature-header scroll-fade">
                     <p class="feature-kicker">SoftiFy Platform</p>
                     <h2>Semua Fitur Produktivitas Pelajar Dalam Satu Alur Belajar</h2>
-                    <p>Dirancang dengan AI, gamifikasi, dan task management untuk membantu pelajar tetap konsisten, fokus, dan termotivasi setiap hari.</p>
+                    <p>Dirancang dengan AI, task management, diary digital, kolaborasi pertemanan, dan sistem premium untuk membantu pelajar tetap konsisten setiap hari.</p>
                 </div>
 
                 <div class="feature-grid">
@@ -132,28 +132,28 @@
                             <p>Atur jadwal tugas harian dan lacak progres assignment dengan sistem manajemen tugas yang rapi dan fokus.</p>
                         </article>
 
-                        <article class="feature-item scroll-fade" data-feature="goal" role="tab" aria-selected="false" tabindex="-1">
+                        <article class="feature-item scroll-fade" data-feature="diary" role="tab" aria-selected="false" tabindex="-1">
                             <span class="feature-index">05</span>
-                            <h3>Goal System</h3>
-                            <p>Tentukan target belajar harian, mingguan, bulanan, hingga tahunan untuk arah belajar yang konsisten.</p>
+                            <h3>Diary / Catatan Harian</h3>
+                            <p>Simpan jurnal belajar, refleksi harian, dan mood belajar agar progres Anda terdokumentasi secara konsisten.</p>
                         </article>
 
-                        <article class="feature-item scroll-fade" data-feature="challenge" role="tab" aria-selected="false" tabindex="-1">
+                        <article class="feature-item scroll-fade" data-feature="friends" role="tab" aria-selected="false" tabindex="-1">
                             <span class="feature-index">06</span>
-                            <h3>Study Challenge</h3>
-                            <p>Selesaikan sesi belajar berbasis timer dan kumpulkan reward dari tantangan gamifikasi untuk meningkatkan motivasi.</p>
+                            <h3>Pertemanan & Chat Privat</h3>
+                            <p>Bangun relasi belajar, kelola daftar teman, dan diskusikan materi langsung melalui fitur chat privat.</p>
                         </article>
 
-                        <article class="feature-item scroll-fade" data-feature="profile" role="tab" aria-selected="false" tabindex="-1">
+                        <article class="feature-item scroll-fade" data-feature="premium" role="tab" aria-selected="false" tabindex="-1">
                             <span class="feature-index">07</span>
-                            <h3>User Profile</h3>
-                            <p>Kelola identitas pengguna seperti nama, status pelajar, gender, dan informasi akun dalam satu halaman profil.</p>
+                            <h3>Premium Membership</h3>
+                            <p>Tingkatkan akun untuk membuka fitur eksklusif, insight lebih dalam, serta pengalaman belajar yang lebih maksimal.</p>
                         </article>
 
-                        <article class="feature-item scroll-fade" data-feature="leaderboard" role="tab" aria-selected="false" tabindex="-1">
+                        <article class="feature-item scroll-fade" data-feature="admin" role="tab" aria-selected="false" tabindex="-1">
                             <span class="feature-index">08</span>
-                            <h3>Leaderboard</h3>
-                            <p>Kompetisi sehat antar pengguna melalui papan peringkat berdasarkan EXP dari goals dan challenge yang diselesaikan.</p>
+                            <h3>Admin Control Panel</h3>
+                            <p>Pengelolaan konten, pengguna, dan pengaturan platform dilakukan terpusat agar sistem tetap aman dan terstruktur.</p>
                         </article>
                     </div>
 
@@ -227,64 +227,64 @@
                             <div class="task-row"><label><input type="checkbox" checked> Riset materi presentasi</label><span>20:00</span></div>
                         </section>
 
-                        <section class="preview-screen" data-preview="goal">
+                        <section class="preview-screen" data-preview="diary">
                             <header>
-                                <p>Goal System</p>
-                                <span>Milestone Tracker</span>
+                                <p>Diary Belajar</p>
+                                <span>Daily Reflection</span>
                             </header>
-                            <div class="goal-item"><span>Daily Goal</span><em>80%</em><b style="--goal:80%"></b></div>
-                            <div class="goal-item"><span>Weekly Goal</span><em>64%</em><b style="--goal:64%"></b></div>
-                            <div class="goal-item"><span>Monthly Goal</span><em>42%</em><b style="--goal:42%"></b></div>
-                            <div class="goal-item"><span>Yearly Goal</span><em>27%</em><b style="--goal:27%"></b></div>
+                            <div class="goal-item"><span>Judul Catatan</span><em>Bab Elektromagnetik</em><b style="--goal:92%"></b></div>
+                            <div class="goal-item"><span>Mood Belajar</span><em>Semangat</em><b style="--goal:84%"></b></div>
+                            <div class="goal-item"><span>Ringkasan</span><em>25 menit refleksi</em><b style="--goal:74%"></b></div>
+                            <div class="goal-item"><span>Update Terakhir</span><em>Hari ini, 20:10</em><b style="--goal:68%"></b></div>
                         </section>
 
-                        <section class="preview-screen" data-preview="challenge">
+                        <section class="preview-screen" data-preview="friends">
                             <header>
-                                <p>Study Challenge</p>
-                                <span>Gamified Focus Mode</span>
+                                <p>Friendship Hub</p>
+                                <span>Connect and Chat</span>
                             </header>
                             <div class="timer-circle">
-                                <strong>25:00</strong>
-                                <p>Focus Session</p>
+                                <strong>12</strong>
+                                <p>Teman Aktif</p>
                             </div>
                             <div class="reward-row">
-                                <span>Reward Hari Ini</span>
-                                <b>+120 EXP</b>
+                                <span>Pesan Baru Hari Ini</span>
+                                <b>28 Chat</b>
                             </div>
                             <div class="badge-track">
                                 <i></i><i></i><i></i><i class="locked"></i>
                             </div>
                         </section>
 
-                        <section class="preview-screen" data-preview="profile">
+                        <section class="preview-screen" data-preview="premium">
                             <header>
-                                <p>User Profile</p>
-                                <span>Account Center</span>
+                                <p>Premium Membership</p>
+                                <span>Plan and Benefits</span>
                             </header>
                             <div class="profile-card">
                                 <div class="avatar">AF</div>
                                 <div>
                                     <h4>Alif Fadlan</h4>
-                                    <p>Status: Student</p>
+                                    <p>Status: Premium Active</p>
                                 </div>
                             </div>
                             <ul class="profile-list">
-                                <li>Gender <span>Laki-laki</span></li>
-                                <li>Email <span>alif@softify.id</span></li>
-                                <li>Account <span>Premium Active</span></li>
+                                <li>Paket <span>Premium Bulanan</span></li>
+                                <li>Mulai <span>12 Maret 2026</span></li>
+                                <li>Benefit <span>Analitik Lanjutan</span></li>
                             </ul>
                         </section>
 
-                        <section class="preview-screen" data-preview="leaderboard">
+                        <section class="preview-screen" data-preview="admin">
                             <header>
-                                <p>Leaderboard</p>
-                                <span>Top EXP Students</span>
+                                <p>Admin Console</p>
+                                <span>Platform Monitoring</span>
                             </header>
                             <ol class="leaderboard-list">
-                                <li><strong>1</strong><p>Nadia</p><span>9,420 EXP</span></li>
-                                <li><strong>2</strong><p>Rafi</p><span>9,180 EXP</span></li>
-                                <li><strong>3</strong><p>Alif</p><span>8,960 EXP</span></li>
-                                <li><strong>4</strong><p>Dina</p><span>8,540 EXP</span></li>
+                                <li><strong>1</strong><p>Total Pengguna</p><span>1,532 akun</span></li>
+                                <li><strong>2</strong><p>Laporan Masuk</p><span>7 tiket baru</span></li>
+                                <li><strong>3</strong><p>Konten Aktif</p><span>214 item</span></li>
+                                <li><strong>4</strong><p>Status Sistem</p><span>Normal</span></li>
                             </ol>
                         </section>
                     </aside>
@@ -414,10 +414,11 @@
             <ul>
                 <li><a href="{{ route('dashboard') }}">Dashboard Belajar</a></li>
                 <li><a href="#">AI Asisten</a></li>
-                <li><a href="#">Gamifikasi</a></li>
+                <li><a href="#">Diary / Catatan Harian</a></li>
+                <li><a href="#">Pertemanan & Chat</a></li>
                 <li><a href="#">Manajemen Tugas</a></li>
-                <li><a href="#">Target Belajar</a></li>
-                <li><a href="#">Papan Peringkat</a></li>
+                <li><a href="#">Premium Membership</a></li>
+                <li><a href="#">Admin Control Panel</a></li>
             </ul>
         </div>
 
