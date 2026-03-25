@@ -46,7 +46,7 @@
             : 0;
     @endphp
 
-    <div id="mobileOverlay" class="fixed inset-0 z-40 bg-slate-950/45 backdrop-blur-sm hidden md:hidden"></div>
+    <div id="mobileOverlay" class="fixed inset-0 z-40 bg-slate-950/45 backdrop-blur-sm hidden md:hidden pointer-events-none"></div>
 
     <header class="md:hidden fixed top-0 inset-x-0 z-30 px-4 pt-4">
         <div class="rounded-2xl bg-white/90 backdrop-blur border border-slate-200/70 shadow-float px-3 py-2.5 flex items-center justify-between">
@@ -282,6 +282,7 @@ const openMenu = () => {
 
     mobileSidebar.classList.remove('translate-x-full');
     mobileOverlay.classList.remove('hidden');
+    mobileOverlay.classList.remove('pointer-events-none');
     document.body.classList.add('overflow-hidden');
 };
 
@@ -292,6 +293,7 @@ const closeMenu = () => {
 
     mobileSidebar.classList.add('translate-x-full');
     mobileOverlay.classList.add('hidden');
+    mobileOverlay.classList.add('pointer-events-none');
     document.body.classList.remove('overflow-hidden');
 };
 

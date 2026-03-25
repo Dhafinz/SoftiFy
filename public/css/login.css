@@ -204,3 +204,82 @@
                 align-items: flex-start;
             }
         }
+
+        @media (max-width: 480px) {
+            .login-container {
+                margin-top: 60px;
+                padding: 12px;
+                min-height: auto;
+            }
+
+            .login-box {
+                padding: 24px 16px;
+                border-radius: 16px;
+                box-shadow: 0 4px 16px rgba(30, 86, 160, 0.1);
+            }
+
+            .login-header {
+                margin-bottom: 24px;
+            }
+
+            .login-header h2 {
+                font-size: 18px;
+                margin-bottom: 6px;
+            }
+
+            .login-header p {
+                font-size: 12px;
+            }
+
+            .form-group {
+                margin-bottom: 14px;
+            }
+
+            .form-group label {
+                font-size: 12px;
+                margin-bottom: 5px;
+            }
+
+            .form-group input {
+                padding: 8px 10px;
+                font-size: 12px;
+                border-radius: 8px;
+            }
+
+            .remember-forgot {
+                margin-bottom: 16px;
+                font-size: 12px;
+                flex-direction: column;
+                gap: 8px;
+            }
+
+            .remember-forgot label {
+                font-size: 12px;
+            }
+
+            .btn-login {
+                padding: 10px;
+                font-size: 14px;
+                margin-bottom: 8px;
+            }
+
+            .divider {
+                margin: 16px 0;
+                font-size: 11px;
+            }
+
+            .social-login {
+                gap: 8px;
+                margin-bottom: 16px;
+            }
+
+            .social-btn {
+                padding: 8px;
+                font-size: 11px;
+            }
+
+            .signup-link {
+                font-size: 12px;
+                margin-top: 12px;
+            }
+        }

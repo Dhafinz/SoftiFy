@@ -72,7 +72,7 @@
             <p><span>SOFTIFY</span> adalah platform produktivitas pelajar yang menggabungkan sistem AI cerdas, gamifikasi motivasi, dan manajemen tugas dalam satu dashboard yang kuat.</p>
             <div class="tombol">
                 <a href="" class="mulai">Coba Sekarang</a>
-                <a href="" class="demo">Tonton Demo</a>
+                <button type="button" class="demo" id="demo-btn">Tonton Demo</button>
             </div>
 {{-- Total aktif serta total rating website --}}
             <div class="aktif">
@@ -456,5 +456,166 @@
         </ul>
     </div>
 </footer>
+
+    {{-- Video Demo Modal --}}
+    <div id="demo-modal" class="demo-modal" aria-hidden="true">
+        <div class="demo-modal-backdrop" id="demo-modal-backdrop"></div>
+        <div class="demo-modal-dialog" role="dialog" aria-modal="true" aria-label="Video Demo SoftiFy">
+            <button class="demo-modal-close" id="demo-modal-close" type="button" aria-label="Tutup video demo">&times;</button>
+            <div class="demo-modal-content">
+                <iframe 
+                    width="100%" 
+                    height="600" 
+                    src="about:blank"
+                    data-src="https://www.youtube.com/embed/m1EcBLRLNqU?autoplay=1&amp;loop=1&amp;playlist=m1EcBLRLNqU" 
+                    title="Demo Video SoftiFy" 
+                    frameborder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                    referrerpolicy="strict-origin-when-cross-origin" 
+                    allowfullscreen>
+                </iframe>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        .demo-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 9999;
+        }
+
+        .demo-modal.is-open {
+            display: block;
+        }
+
+        .demo-modal-backdrop {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            cursor: pointer;
+        }
+
+        .demo-modal-dialog {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 90%;
+            max-width: 800px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+            z-index: 10000;
+        }
+
+        .demo-modal-close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 40px;
+            height: 40px;
+            padding: 0;
+            background: rgba(255, 255, 255, 0.9);
+            border: none;
+            border-radius: 50%;
+            font-size: 28px;
+            color: #333;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            z-index: 10001;
+        }
+
+        .demo-modal-close:hover {
+            background: rgba(255, 255, 255, 1);
+            transform: rotate(90deg);
+        }
+
+        .demo-modal-content {
+            width: 100%;
+            aspect-ratio: 16 / 9;
+        }
+
+        .demo-modal-content iframe {
+            width: 100% !important;
+            height: 100% !important;
+        }
+
+        @media (max-width: 768px) {
+            .demo-modal-dialog {
+                width: 95%;
+            }
+
+            .demo-modal-content {
+                aspect-ratio: 16 / 9;
+            }
+        }
+    </style>
+
+    <script>
+        // Demo Modal Functionality
+        const demoBtn = document.getElementById('demo-btn');
+        const demoModal = document.getElementById('demo-modal');
+        const demoModalBackdrop = document.getElementById('demo-modal-backdrop');
+        const demoModalClose = document.getElementById('demo-modal-close');
+        const demoIframe = demoModal ? demoModal.querySelector('iframe') : null;
+
+        if (demoBtn && demoModal) {
+            const openDemoModal = () => {
+                if (demoIframe && demoIframe.dataset.src) {
+                    demoIframe.src = demoIframe.dataset.src;
+                }
+
+                demoModal.classList.add('is-open');
+                demoModal.setAttribute('aria-hidden', 'false');
+                document.body.style.overflow = 'hidden';
+            };
+
+            const closeDemoModal = () => {
+                demoModal.classList.remove('is-open');
+                demoModal.setAttribute('aria-hidden', 'true');
+                document.body.style.overflow = 'auto';
+
+                // Reset iframe source to force YouTube player to stop.
+                if (demoIframe) {
+                    demoIframe.src = 'about:blank';
+                }
+            };
+
+            // Open modal on button click
+            demoBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                openDemoModal();
+            });
+
+            // Close on X button click
+            if (demoModalClose) {
+                demoModalClose.addEventListener('click', closeDemoModal);
+            }
+
+            // Close on backdrop click
+            if (demoModalBackdrop) {
+                demoModalBackdrop.addEventListener('click', closeDemoModal);
+            }
+
+            // Close on Escape key
+            window.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && demoModal.classList.contains('is-open')) {
+                    closeDemoModal();
+                }
+            });
+        }
+    </script>
 </body>
 </html>
