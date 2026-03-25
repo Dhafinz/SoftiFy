@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 23, 2026 at 07:14 AM
--- Server version: 10.4.32-MariaDB
--- PHP Version: 8.2.12
+-- Waktu pembuatan: 25 Mar 2026 pada 12.50
+-- Versi server: 10.4.32-MariaDB
+-- Versi PHP: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,7 +24,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `ai_messages`
+-- Struktur dari tabel `ai_messages`
 --
 
 CREATE TABLE `ai_messages` (
@@ -40,7 +40,7 @@ CREATE TABLE `ai_messages` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `cache`
+-- Struktur dari tabel `cache`
 --
 
 CREATE TABLE `cache` (
@@ -52,7 +52,7 @@ CREATE TABLE `cache` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `cache_locks`
+-- Struktur dari tabel `cache_locks`
 --
 
 CREATE TABLE `cache_locks` (
@@ -64,7 +64,7 @@ CREATE TABLE `cache_locks` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `failed_jobs`
+-- Struktur dari tabel `failed_jobs`
 --
 
 CREATE TABLE `failed_jobs` (
@@ -80,7 +80,7 @@ CREATE TABLE `failed_jobs` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `jobs`
+-- Struktur dari tabel `jobs`
 --
 
 CREATE TABLE `jobs` (
@@ -96,7 +96,7 @@ CREATE TABLE `jobs` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `job_batches`
+-- Struktur dari tabel `job_batches`
 --
 
 CREATE TABLE `job_batches` (
@@ -115,7 +115,7 @@ CREATE TABLE `job_batches` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `migrations`
+-- Struktur dari tabel `migrations`
 --
 
 CREATE TABLE `migrations` (
@@ -125,7 +125,7 @@ CREATE TABLE `migrations` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `migrations`
+-- Dumping data untuk tabel `migrations`
 --
 
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
@@ -152,7 +152,7 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `notes`
+-- Struktur dari tabel `notes`
 --
 
 CREATE TABLE `notes` (
@@ -168,7 +168,7 @@ CREATE TABLE `notes` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `password_reset_tokens`
+-- Struktur dari tabel `password_reset_tokens`
 --
 
 CREATE TABLE `password_reset_tokens` (
@@ -180,7 +180,7 @@ CREATE TABLE `password_reset_tokens` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `password_verification_codes`
+-- Struktur dari tabel `password_verification_codes`
 --
 
 CREATE TABLE `password_verification_codes` (
@@ -192,7 +192,7 @@ CREATE TABLE `password_verification_codes` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `profiles`
+-- Struktur dari tabel `profiles`
 --
 
 CREATE TABLE `profiles` (
@@ -208,7 +208,7 @@ CREATE TABLE `profiles` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `schedules`
+-- Struktur dari tabel `schedules`
 --
 
 CREATE TABLE `schedules` (
@@ -226,7 +226,7 @@ CREATE TABLE `schedules` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `sessions`
+-- Struktur dari tabel `sessions`
 --
 
 CREATE TABLE `sessions` (
@@ -239,7 +239,7 @@ CREATE TABLE `sessions` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `sessions`
+-- Dumping data untuk tabel `sessions`
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
@@ -248,7 +248,7 @@ INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `study_sessions`
+-- Struktur dari tabel `study_sessions`
 --
 
 CREATE TABLE `study_sessions` (
@@ -265,7 +265,7 @@ CREATE TABLE `study_sessions` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `study_targets`
+-- Struktur dari tabel `study_targets`
 --
 
 CREATE TABLE `study_targets` (
@@ -284,7 +284,7 @@ CREATE TABLE `study_targets` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tasks`
+-- Struktur dari tabel `tasks`
 --
 
 CREATE TABLE `tasks` (
@@ -307,7 +307,7 @@ CREATE TABLE `tasks` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `users`
+-- Struktur dari tabel `users`
 --
 
 CREATE TABLE `users` (
@@ -337,7 +337,7 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `users`
+-- Dumping data untuk tabel `users`
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `class_level`, `learning_goal`, `is_premium`, `is_admin`, `is_banned`, `banned_at`, `premium_activated_at`, `premium_verification_email`, `premium_payment_proof_path`, `premium_verification_status`, `premium_payment_submitted_at`, `email_verified_at`, `password`, `remember_token`, `current_streak`, `grace_used_month`, `grace_month`, `streak_calculated_at`, `created_at`, `updated_at`) VALUES
@@ -347,7 +347,7 @@ INSERT INTO `users` (`id`, `name`, `email`, `class_level`, `learning_goal`, `is_
 -- --------------------------------------------------------
 
 --
--- Table structure for table `website_settings`
+-- Struktur dari tabel `website_settings`
 --
 
 CREATE TABLE `website_settings` (
@@ -359,7 +359,7 @@ CREATE TABLE `website_settings` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `website_settings`
+-- Dumping data untuk tabel `website_settings`
 --
 
 INSERT INTO `website_settings` (`id`, `key`, `value`, `created_at`, `updated_at`) VALUES
@@ -372,80 +372,80 @@ INSERT INTO `website_settings` (`id`, `key`, `value`, `created_at`, `updated_at`
 --
 
 --
--- Indexes for table `ai_messages`
+-- Indeks untuk tabel `ai_messages`
 --
 ALTER TABLE `ai_messages`
   ADD PRIMARY KEY (`id`),
   ADD KEY `ai_messages_user_id_foreign` (`user_id`);
 
 --
--- Indexes for table `cache`
+-- Indeks untuk tabel `cache`
 --
 ALTER TABLE `cache`
   ADD PRIMARY KEY (`key`),
   ADD KEY `cache_expiration_index` (`expiration`);
 
 --
--- Indexes for table `cache_locks`
+-- Indeks untuk tabel `cache_locks`
 --
 ALTER TABLE `cache_locks`
   ADD PRIMARY KEY (`key`),
   ADD KEY `cache_locks_expiration_index` (`expiration`);
 
 --
--- Indexes for table `failed_jobs`
+-- Indeks untuk tabel `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `failed_jobs_uuid_unique` (`uuid`);
 
 --
--- Indexes for table `jobs`
+-- Indeks untuk tabel `jobs`
 --
 ALTER TABLE `jobs`
   ADD PRIMARY KEY (`id`),
   ADD KEY `jobs_queue_index` (`queue`);
 
 --
--- Indexes for table `job_batches`
+-- Indeks untuk tabel `job_batches`
 --
 ALTER TABLE `job_batches`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `migrations`
+-- Indeks untuk tabel `migrations`
 --
 ALTER TABLE `migrations`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `notes`
+-- Indeks untuk tabel `notes`
 --
 ALTER TABLE `notes`
   ADD PRIMARY KEY (`id`),
   ADD KEY `notes_user_id_foreign` (`user_id`);
 
 --
--- Indexes for table `password_reset_tokens`
+-- Indeks untuk tabel `password_reset_tokens`
 --
 ALTER TABLE `password_reset_tokens`
   ADD PRIMARY KEY (`email`);
 
 --
--- Indexes for table `password_verification_codes`
+-- Indeks untuk tabel `password_verification_codes`
 --
 ALTER TABLE `password_verification_codes`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `profiles`
+-- Indeks untuk tabel `profiles`
 --
 ALTER TABLE `profiles`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `profiles_user_id_unique` (`user_id`);
 
 --
--- Indexes for table `schedules`
+-- Indeks untuk tabel `schedules`
 --
 ALTER TABLE `schedules`
   ADD PRIMARY KEY (`id`),
@@ -453,7 +453,7 @@ ALTER TABLE `schedules`
   ADD KEY `schedules_schedule_date_index` (`schedule_date`);
 
 --
--- Indexes for table `sessions`
+-- Indeks untuk tabel `sessions`
 --
 ALTER TABLE `sessions`
   ADD PRIMARY KEY (`id`),
@@ -461,7 +461,7 @@ ALTER TABLE `sessions`
   ADD KEY `sessions_last_activity_index` (`last_activity`);
 
 --
--- Indexes for table `study_sessions`
+-- Indeks untuk tabel `study_sessions`
 --
 ALTER TABLE `study_sessions`
   ADD PRIMARY KEY (`id`),
@@ -469,14 +469,14 @@ ALTER TABLE `study_sessions`
   ADD KEY `study_sessions_study_date_index` (`study_date`);
 
 --
--- Indexes for table `study_targets`
+-- Indeks untuk tabel `study_targets`
 --
 ALTER TABLE `study_targets`
   ADD PRIMARY KEY (`id`),
   ADD KEY `study_targets_user_id_foreign` (`user_id`);
 
 --
--- Indexes for table `tasks`
+-- Indeks untuk tabel `tasks`
 --
 ALTER TABLE `tasks`
   ADD PRIMARY KEY (`id`),
@@ -484,143 +484,143 @@ ALTER TABLE `tasks`
   ADD KEY `tasks_due_date_index` (`due_date`);
 
 --
--- Indexes for table `users`
+-- Indeks untuk tabel `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `users_email_unique` (`email`);
 
 --
--- Indexes for table `website_settings`
+-- Indeks untuk tabel `website_settings`
 --
 ALTER TABLE `website_settings`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `website_settings_key_unique` (`key`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT untuk tabel yang dibuang
 --
 
 --
--- AUTO_INCREMENT for table `ai_messages`
+-- AUTO_INCREMENT untuk tabel `ai_messages`
 --
 ALTER TABLE `ai_messages`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `failed_jobs`
+-- AUTO_INCREMENT untuk tabel `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `jobs`
+-- AUTO_INCREMENT untuk tabel `jobs`
 --
 ALTER TABLE `jobs`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `migrations`
+-- AUTO_INCREMENT untuk tabel `migrations`
 --
 ALTER TABLE `migrations`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
--- AUTO_INCREMENT for table `notes`
+-- AUTO_INCREMENT untuk tabel `notes`
 --
 ALTER TABLE `notes`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `password_verification_codes`
+-- AUTO_INCREMENT untuk tabel `password_verification_codes`
 --
 ALTER TABLE `password_verification_codes`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `profiles`
+-- AUTO_INCREMENT untuk tabel `profiles`
 --
 ALTER TABLE `profiles`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `schedules`
+-- AUTO_INCREMENT untuk tabel `schedules`
 --
 ALTER TABLE `schedules`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `study_sessions`
+-- AUTO_INCREMENT untuk tabel `study_sessions`
 --
 ALTER TABLE `study_sessions`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `study_targets`
+-- AUTO_INCREMENT untuk tabel `study_targets`
 --
 ALTER TABLE `study_targets`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `tasks`
+-- AUTO_INCREMENT untuk tabel `tasks`
 --
 ALTER TABLE `tasks`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `users`
+-- AUTO_INCREMENT untuk tabel `users`
 --
 ALTER TABLE `users`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT for table `website_settings`
+-- AUTO_INCREMENT untuk tabel `website_settings`
 --
 ALTER TABLE `website_settings`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- Constraints for dumped tables
+-- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
 --
 
 --
--- Constraints for table `ai_messages`
+-- Ketidakleluasaan untuk tabel `ai_messages`
 --
 ALTER TABLE `ai_messages`
   ADD CONSTRAINT `ai_messages_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
 
 --
--- Constraints for table `notes`
+-- Ketidakleluasaan untuk tabel `notes`
 --
 ALTER TABLE `notes`
   ADD CONSTRAINT `notes_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
 
 --
--- Constraints for table `profiles`
+-- Ketidakleluasaan untuk tabel `profiles`
 --
 ALTER TABLE `profiles`
   ADD CONSTRAINT `profiles_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
 
 --
--- Constraints for table `schedules`
+-- Ketidakleluasaan untuk tabel `schedules`
 --
 ALTER TABLE `schedules`
   ADD CONSTRAINT `schedules_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
 
 --
--- Constraints for table `study_sessions`
+-- Ketidakleluasaan untuk tabel `study_sessions`
 --
 ALTER TABLE `study_sessions`
   ADD CONSTRAINT `study_sessions_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
 
 --
--- Constraints for table `study_targets`
+-- Ketidakleluasaan untuk tabel `study_targets`
 --
 ALTER TABLE `study_targets`
   ADD CONSTRAINT `study_targets_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
 
 --
--- Constraints for table `tasks`
+-- Ketidakleluasaan untuk tabel `tasks`
 --
 ALTER TABLE `tasks`
   ADD CONSTRAINT `tasks_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
