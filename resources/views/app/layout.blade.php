@@ -28,8 +28,22 @@
         };
     </script>
 </head>
-<body class="bg-slate-100 text-slate-800 antialiased">
-<div class="min-h-screen bg-[radial-gradient(circle_at_top,_rgba(14,165,233,0.14),_transparent_55%),_linear-gradient(to_bottom,_#f8fbff,_#f1f5f9)] md:flex">
+<body class="bg-slate-100 text-slate-800 antialiased overflow-x-hidden">
+<style>
+    html,
+    body {
+        width: 100%;
+        max-width: 100%;
+        overflow-x: hidden;
+    }
+
+    *,
+    *::before,
+    *::after {
+        box-sizing: border-box;
+    }
+</style>
+<div class="min-h-screen overflow-x-hidden bg-[radial-gradient(circle_at_top,_rgba(14,165,233,0.14),_transparent_55%),_linear-gradient(to_bottom,_#f8fbff,_#f1f5f9)] md:flex">
     @php
         $notificationCount = collect($notifications ?? [])->where('type', '!=', 'success')->count();
         $friendRequestCount = auth()->check()
@@ -46,9 +60,9 @@
             : 0;
     @endphp
 
-    <div id="mobileOverlay" class="fixed inset-0 z-40 bg-slate-950/45 backdrop-blur-sm hidden md:hidden pointer-events-none"></div>
+    <div id="mobileOverlay" class="fixed inset-0 z-[130] bg-slate-950/45 backdrop-blur-sm hidden md:hidden pointer-events-none"></div>
 
-    <header class="md:hidden fixed top-0 inset-x-0 z-30 px-4 pt-4">
+    <header class="md:hidden fixed top-0 inset-x-0 z-[120] px-4 pt-4">
         <div class="rounded-2xl bg-white/90 backdrop-blur border border-slate-200/70 shadow-float px-3 py-2.5 flex items-center justify-between">
             <div>
                 <p class="text-xs font-semibold tracking-[0.18em] uppercase text-softi-700">SoftiFy</p>
@@ -68,7 +82,7 @@
         </div>
     </header>
 
-    <aside id="mobileSidebar" class="fixed right-0 top-0 bottom-0 z-50 w-[88%] max-w-xs translate-x-full transition-transform duration-300 bg-gradient-to-b from-softi-900 via-sky-900 to-cyan-950 text-white flex flex-col md:translate-x-0 md:sticky md:left-0 md:top-0 md:z-auto md:h-screen md:w-72">
+    <aside id="mobileSidebar" class="fixed right-0 top-0 bottom-0 z-[140] w-full max-w-sm sm:w-[88%] sm:max-w-xs translate-x-full transition-transform duration-300 bg-gradient-to-b from-softi-900 via-sky-900 to-cyan-950 text-white flex flex-col md:translate-x-0 md:left-0 md:right-auto md:top-0 md:bottom-0 md:z-30 md:h-screen md:w-72">
         <div class="px-5 py-6 border-b border-white/10 flex items-start justify-between gap-3">
             <div>
                 <h1 class="text-2xl font-black tracking-wide">SOFTIFY</h1>
@@ -110,6 +124,10 @@
             <a href="{{ route('challenge.index') }}" class="flex items-center gap-2.5 rounded-xl px-3 py-2.5 transition {{ $is('challenge.*') }}">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm.75-11a.75.75 0 00-1.5 0v3.25c0 .199.079.39.22.53l2 2a.75.75 0 101.06-1.06l-1.78-1.72V7z" clip-rule="evenodd"/></svg>
                 Challenge
+            </a>
+            <a href="{{ route('reviews.index') }}" class="flex items-center gap-2.5 rounded-xl px-3 py-2.5 transition {{ $is('reviews.*') }}">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.176 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.719c-.783-.57-.38-1.81.588-1.81H7.03a1 1 0 00.95-.69l1.07-3.292z"/></svg>
+                Ulasan
             </a>
             <a href="{{ route('leaderboard.index') }}" class="flex items-center gap-2.5 rounded-xl px-3 py-2.5 transition {{ $is('leaderboard.*') }}">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M15 2.75a.75.75 0 00-.75-.75h-8.5a.75.75 0 00-.75.75v3.628A4.5 4.5 0 008 10.5v1.757a1 1 0 00-.553.894V16h5.106v-2.849a1 1 0 00-.553-.894V10.5a4.5 4.5 0 002.75-4.122V2.75zM6.5 3.5v2.878a3 3 0 006 0V3.5h-6z" clip-rule="evenodd"/></svg>
@@ -170,7 +188,7 @@
         </div>
     </aside>
 
-    <main class="flex-1 min-w-0">
+    <main class="flex-1 min-w-0 overflow-x-hidden md:ml-72">
         <header class="hidden md:flex bg-white/85 backdrop-blur border-b border-slate-200 px-4 py-3 sm:px-6 items-center justify-between gap-3">
             <div>
                 <p class="font-semibold">{{ $title ?? 'SoftiFY' }}</p>
@@ -202,7 +220,7 @@
             </div>
         </header>
 
-        <section class="p-4 pt-24 pb-24 sm:p-6 md:pt-6 md:pb-6 space-y-4">
+        <section class="p-4 pt-24 pb-24 sm:p-6 md:pt-6 md:pb-6 space-y-4 overflow-x-hidden">
             @if (session('success'))
                 <div class="rounded-xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm text-emerald-700">{{ session('success') }}</div>
             @endif
@@ -232,7 +250,7 @@
     </main>
 </div>
 
-<nav class="md:hidden fixed bottom-0 inset-x-0 z-30 p-3 pb-4">
+<nav class="md:hidden fixed bottom-0 inset-x-0 z-[120] p-3 pb-4">
     <div class="mx-auto max-w-md rounded-2xl border border-slate-200/80 bg-white/95 backdrop-blur shadow-float px-2 py-2">
         <div class="grid grid-cols-7 gap-1 text-[11px] font-medium">
             <a href="{{ route('dashboard') }}" class="flex flex-col items-center gap-1 rounded-xl px-1 py-1.5 {{ request()->routeIs('dashboard') ? 'text-softi-700 bg-softi-50' : 'text-slate-500 active:bg-slate-100' }}">
@@ -284,6 +302,7 @@ const openMenu = () => {
     mobileOverlay.classList.remove('hidden');
     mobileOverlay.classList.remove('pointer-events-none');
     document.body.classList.add('overflow-hidden');
+    document.body.classList.add('mobile-menu-open');
 };
 
 const closeMenu = () => {
@@ -295,6 +314,7 @@ const closeMenu = () => {
     mobileOverlay.classList.add('hidden');
     mobileOverlay.classList.add('pointer-events-none');
     document.body.classList.remove('overflow-hidden');
+    document.body.classList.remove('mobile-menu-open');
 };
 
 if (mobileMenuOpen) {

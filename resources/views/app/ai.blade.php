@@ -21,7 +21,7 @@
             </p>
         </div>
 
-        <div class="space-y-2 max-h-[420px] overflow-y-auto pr-1">
+        <div class="space-y-2 max-h-[58vh] sm:max-h-[420px] overflow-y-auto pr-1">
             @forelse ($messages as $msg)
                 <div class="rounded-xl p-3 text-sm {{ $msg->role === 'assistant' ? 'bg-blue-50 border border-blue-200' : 'bg-softi-50 border border-softi-200' }}">
                     <p class="text-xs font-semibold {{ $msg->role === 'assistant' ? 'text-blue-700' : 'text-softi-700' }} mb-1">{{ strtoupper($msg->role) }} • {{ $msg->mode }}</p>
@@ -32,16 +32,16 @@
             @endforelse
         </div>
 
-        <form action="{{ route('ai.chat') }}" method="POST" class="mt-3 flex gap-2">
+        <form action="{{ route('ai.chat') }}" method="POST" class="mt-3 flex flex-col gap-2 sm:flex-row">
             @csrf
             <input
                 name="message"
-                class="flex-1 rounded-xl border-slate-300"
+                class="flex-1 min-w-0 rounded-xl border-slate-300"
                 placeholder="Tanyakan apa saja ke AI..."
                 required
                 {{ $chatRemaining <= 0 ? 'disabled' : '' }}
             >
-            <button class="rounded-xl bg-softi-600 text-white px-4 disabled:opacity-50 disabled:cursor-not-allowed" {{ $chatRemaining <= 0 ? 'disabled' : '' }}>Kirim</button>
+            <button class="w-full sm:w-auto rounded-xl bg-softi-600 text-white px-4 py-2.5 disabled:opacity-50 disabled:cursor-not-allowed" {{ $chatRemaining <= 0 ? 'disabled' : '' }}>Kirim</button>
         </form>
 
         @if ($chatRemaining <= 0)
@@ -50,9 +50,9 @@
 
         <div class="mt-4 rounded-xl border border-slate-200 bg-slate-50 p-3">
             <p class="text-xs font-semibold text-slate-700 mb-2">Demo fetch JavaScript ke endpoint JSON /ai-chat</p>
-            <div class="flex gap-2">
-                <input id="aiJsonMessage" class="flex-1 rounded-lg border-slate-300" placeholder="Contoh: kamu ini ai buatannya siapa?">
-                <button id="aiJsonSend" type="button" class="rounded-lg bg-slate-800 text-white px-3 text-sm">Kirim JSON</button>
+            <div class="flex flex-col gap-2 sm:flex-row">
+                <input id="aiJsonMessage" class="flex-1 min-w-0 rounded-lg border-slate-300" placeholder="Contoh: kamu ini ai buatannya siapa?">
+                <button id="aiJsonSend" type="button" class="w-full sm:w-auto rounded-lg bg-slate-800 text-white px-3 py-2 text-sm">Kirim JSON</button>
             </div>
             <pre id="aiJsonOutput" class="mt-2 text-xs bg-white border border-slate-200 rounded-lg p-2 whitespace-pre-wrap">Belum ada response...</pre>
         </div>

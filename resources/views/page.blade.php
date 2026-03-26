@@ -41,7 +41,7 @@
     <header>
         <nav>
             <div class="logo">
-                <h1><a href="">SOFTI<span style="color: #1e56a0;">FY</span></a></h1>
+                <h1><a href="{{ route('welcome') }}">SOFTI<span style="color: #1e56a0;">FY</span></a></h1>
             </div>
             <button class="menu-toggle" type="button" aria-label="Buka navigasi" aria-expanded="false" aria-controls="main-nav-links">
                 <span></span>
@@ -49,11 +49,12 @@
                 <span></span>
             </button>
             <ul id="main-nav-links">
-                <li><a href="">Beranda</a></li>
+                <li><a href="{{ route('welcome') }}">Beranda</a></li>
                 <li><a href="#fitur">Fitur</a></li>
                 <li><a href="#cara-kerja">Cara Kerja</a></li>
                 <li><a href="#premium">Premium</a></li>
-                <li><a href="">Tentang Kami</a></li>
+                <li><a href="{{ route('reviews.public') }}">Ulasan</a></li>
+                <li><a href="{{ route('about') }}">Tentang Kami</a></li>
             </ul>
             <div class="right-nav">
                 <a href="" class="contact">Kontak</a>
@@ -71,22 +72,22 @@
             <h3>Ubah Produktivitasmu Menjadi Permainan.</h3>
             <p><span>SOFTIFY</span> adalah platform produktivitas pelajar yang menggabungkan sistem AI cerdas, gamifikasi motivasi, dan manajemen tugas dalam satu dashboard yang kuat.</p>
             <div class="tombol">
-                <a href="" class="mulai">Coba Sekarang</a>
+                <a href="{{ route('daftar') }}" class="mulai">Coba Sekarang</a>
                 <button type="button" class="demo" id="demo-btn">Tonton Demo</button>
             </div>
 {{-- Total aktif serta total rating website --}}
             <div class="aktif">
                 <div class="pengguna">
-                    <p style="font-weight: bold; font-size: 30px;">1.000+</p>
-                    <p>Pengguna Online</p>
+                    <p style="font-weight: bold; font-size: 30px;">{{ number_format((int) ($heroTotalUsers ?? 0), 0, ',', '.') }}</p>
+                    <p>Total Pengguna</p>
                 </div>
                 <div class="rating">
-                    <p style="font-weight: bold; font-size: 30px;">4.8/5</p>
+                    <p style="font-weight: bold; font-size: 30px;">{{ ($heroAverageRating ?? null) ? number_format((float) $heroAverageRating, 1) : '0.0' }}/5</p>
                     <p>Rating Pengguna</p>
                 </div>
 
                 <div class="pengguna-aktif">
-                    <p style="font-weight: bold; font-size: 30px;">500+</p>
+                    <p style="font-weight: bold; font-size: 30px;">{{ number_format((int) ($heroActiveUsers ?? 0), 0, ',', '.') }}</p>
                     <p>Pengguna Aktif</p>
                 </div>
             </div>
@@ -365,6 +366,44 @@
                 </article>
             </div>
         </section>
+
+        <section class="reviews-preview" id="ulasan">
+            <div class="judul scroll-fade">
+                <h2>Ulasan Pengguna</h2>
+                <p>Rating rata-rata {{ ($heroAverageRating ?? null) ? number_format((float) $heroAverageRating, 1) : '0.0' }}/5 dari {{ number_format((int) ($totalReviews ?? 0), 0, ',', '.') }} ulasan.</p>
+            </div>
+
+            <div class="reviews-preview-grid">
+                @if (!empty($recentReviews) && count($recentReviews) > 0)
+                    @foreach ($recentReviews as $recentReview)
+                        <article class="review-preview-card scroll-fade">
+                            <div class="review-preview-head">
+                                <h3>{{ $recentReview->user->name ?? 'Pengguna SoftiFy' }}</h3>
+                                <p>{{ str_repeat('★', (int) $recentReview->rating) }}{{ str_repeat('☆', max(0, 5 - (int) $recentReview->rating)) }}</p>
+                            </div>
+                            <p>{{ \Illuminate\Support\Str::limit($recentReview->message, 160) }}</p>
+                        </article>
+                    @endforeach
+                @else
+                    <article class="review-preview-card scroll-fade">
+                        <div class="review-preview-head">
+                            <h3>Belum ada ulasan</h3>
+                            <p>☆☆☆☆☆</p>
+                        </div>
+                        <p>Jadilah pengguna pertama yang memberikan penilaian untuk SoftiFy.</p>
+                    </article>
+                @endif
+            </div>
+
+            <div class="reviews-preview-cta scroll-fade">
+                <a href="{{ route('reviews.public') }}" class="btn-premium">Lihat Semua Ulasan</a>
+                @auth
+                    <a href="{{ route('reviews.index') }}" class="btn-free">Tulis Ulasan</a>
+                @else
+                    <a href="{{ route('login') }}" class="btn-free">Login Untuk Menilai</a>
+                @endauth
+            </div>
+        </section>
     </main>
 
     <script src="{{ asset('js/page.js') }}"></script>
@@ -399,11 +438,12 @@
         <div class="footer-links-group">
             <h4>Navigasi</h4>
             <ul>
-                <li><a href="#">Beranda</a></li>
-                <li><a href="#">Fitur</a></li>
-                <li><a href="#">Cara Kerja</a></li>
-                <li><a href="#">Premium</a></li>
-                <li><a href="#">Tentang Kami</a></li>
+                <li><a href="{{ route('welcome') }}">Beranda</a></li>
+                <li><a href="#fitur">Fitur</a></li>
+                <li><a href="#cara-kerja">Cara Kerja</a></li>
+                <li><a href="#premium">Premium</a></li>
+                <li><a href="{{ route('reviews.public') }}">Ulasan</a></li>
+                <li><a href="{{ route('about') }}">Tentang Kami</a></li>
                 <li><a href="#">Kontak</a></li>
             </ul>
         </div>

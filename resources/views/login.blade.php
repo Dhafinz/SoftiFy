@@ -27,7 +27,7 @@
                 <li><a href="{{ route('page') }}#fitur">Fitur</a></li>
                 <li><a href="{{ route('page') }}#cara-kerja">Cara Kerja</a></li>
                 <li><a href="{{ route('page') }}#premium">Premium</a></li>
-                <li><a href="{{ route('page') }}">Tentang Kami</a></li>
+                <li><a href="{{ route('about') }}">Tentang Kami</a></li>
             </ul>
             <div class="right-nav">
                 <a href="#kontak" class="contact">Kontak</a>

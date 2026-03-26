@@ -106,6 +106,11 @@ class User extends Authenticatable
         return $this->hasOne(Profile::class);
     }
 
+    public function review(): HasOne
+    {
+        return $this->hasOne(Review::class);
+    }
+
     public function aiMessages(): HasMany
     {
         return $this->hasMany(AiMessage::class);

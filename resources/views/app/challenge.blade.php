@@ -14,8 +14,18 @@
         --radius-soft: 12px;
     }
 
+    .challenge-page {
+        width: 100%;
+        max-width: 1120px;
+        margin: 0 auto;
+        padding: 0.4rem 0.25rem 1rem;
+        overflow-x: clip;
+    }
+
     .challenge-shell {
         position: relative;
+        width: 100%;
+        overflow-x: clip;
     }
 
     /* Interaction fix:
@@ -37,6 +47,8 @@
     .challenge-grid {
         display: grid;
         gap: 1rem;
+        grid-template-columns: minmax(0, 1fr);
+        align-items: start;
     }
 
     @media (min-width: 1040px) {
@@ -48,12 +60,14 @@
 
     .challenge-card {
         position: relative;
-        z-index: 74;
+        z-index: 1;
+        width: 100%;
         background: linear-gradient(175deg, #fcfeff, var(--bg-soft) 55%, var(--bg-soft-2));
         border: 1px solid var(--line-soft);
         border-radius: var(--radius-main);
         box-shadow: var(--card-shadow);
         padding: 1rem;
+        overflow: hidden;
     }
 
     .challenge-head {
@@ -65,7 +79,7 @@
 
     .challenge-title {
         margin: 0;
-        font-size: 1.35rem;
+        font-size: clamp(1.05rem, 4.4vw, 1.35rem);
         color: var(--ink-strong);
         font-weight: 800;
     }
@@ -73,7 +87,7 @@
     .challenge-subtitle {
         margin: 0.35rem 0 0;
         color: var(--ink-muted);
-        font-size: 0.89rem;
+        font-size: 0.9rem;
     }
 
     .focus-exit-top {
@@ -116,14 +130,14 @@
     .field-label {
         display: block;
         margin-bottom: 0.34rem;
-        font-size: 0.78rem;
+        font-size: 0.875rem;
         color: #345584;
         font-weight: 700;
     }
 
     .field-help {
         margin: 0.35rem 0 0;
-        font-size: 0.76rem;
+        font-size: 0.875rem;
         color: #5f779d;
     }
 
@@ -131,11 +145,12 @@
     .pick-object-btn {
         width: 100%;
         box-sizing: border-box;
+        min-height: 44px;
         border: 1px solid rgba(122, 154, 198, 0.52);
         border-radius: 10px;
         background: #ffffff;
         color: #18355f;
-        font-size: 0.92rem;
+        font-size: 0.9rem;
         padding: 0.58rem 0.72rem;
         transition: all 0.3s ease;
     }
@@ -155,7 +170,8 @@
 
     .focus-stage {
         margin-top: 0.95rem;
-        min-height: 390px;
+        width: 100%;
+        min-height: clamp(310px, 55vh, 390px);
         border: 1px solid rgba(142, 171, 212, 0.34);
         border-radius: 16px;
         background:
@@ -167,6 +183,7 @@
         align-items: start;
         padding: 0.95rem;
         position: relative;
+        overflow: hidden;
     }
 
     .focus-stage::after {
@@ -184,7 +201,10 @@
 
     .timer-display {
         margin: 0;
-        font-size: clamp(3rem, 9vw, 5.4rem);
+        width: 100%;
+        text-align: center;
+        overflow-wrap: anywhere;
+        font-size: clamp(2.25rem, 14vw, 5.4rem);
         line-height: 0.97;
         font-weight: 900;
         color: #1b4ca4;
@@ -464,6 +484,12 @@
     .steam.s3 { left: 62px; animation-delay: 0.95s; }
     .steam.s4 { left: 82px; animation-delay: 1.32s; }
 
+    body.mobile-menu-open .challenge-shell,
+    body.mobile-menu-open .focus-modal,
+    body.mobile-menu-open .focus-dim-layer {
+        pointer-events: none;
+    }
+
     .action-row {
         margin-top: 0.95rem;
         display: flex;
@@ -475,6 +501,7 @@
     .btn {
         border: none;
         border-radius: 12px;
+        min-height: 44px;
         padding: 0.62rem 0.96rem;
         color: #ffffff;
         font-size: 0.9rem;
@@ -588,7 +615,7 @@
     .history-subtitle {
         margin: 0.35rem 0 0.7rem;
         color: #60789f;
-        font-size: 0.82rem;
+        font-size: 0.875rem;
     }
 
     .history-list {
@@ -606,20 +633,20 @@
     .history-topic {
         margin: 0;
         color: #1f3f6f;
-        font-size: 0.89rem;
+        font-size: 0.9rem;
         font-weight: 700;
     }
 
     .history-meta {
         margin: 0.25rem 0 0;
         color: #61799f;
-        font-size: 0.78rem;
+        font-size: 0.875rem;
     }
 
     .history-empty {
         margin: 0;
         color: #61799f;
-        font-size: 0.84rem;
+        font-size: 0.875rem;
     }
 
     .hidden {
@@ -723,12 +750,96 @@
     }
 
     body.challenge-focus-mode .challenge-shell.focus-active .challenge-card {
+        z-index: 74;
         background: #fbfeff;
         border-color: rgba(145, 169, 205, 0.42);
     }
 
     body.challenge-focus-mode .challenge-shell.focus-active .history-card {
         display: none;
+    }
+
+    @media (max-width: 380px) {
+        .challenge-page {
+            padding: 0.4rem 0.25rem 0.9rem;
+        }
+
+        .focus-stage {
+            min-height: 290px;
+            padding: 0.75rem;
+        }
+
+        .timer-display {
+            font-size: clamp(1.95rem, 11.5vw, 3.2rem);
+        }
+
+        .candle-wrap {
+            width: 78px;
+            height: 154px;
+            margin-bottom: 14px;
+        }
+
+        .candle-body {
+            width: 66px;
+            height: 140px;
+        }
+
+        .ice-wrap {
+            width: 92px;
+            height: 92px;
+            margin-bottom: 16px;
+        }
+
+        .water-wrap {
+            width: 102px;
+            height: 128px;
+            margin-bottom: 14px;
+        }
+
+        .water-cup {
+            height: 116px;
+        }
+
+        .water-cup::before {
+            width: 106px;
+        }
+
+        .water-handle {
+            right: -18px;
+            top: 40px;
+            width: 16px;
+            height: 44px;
+        }
+
+        .steam {
+            top: -30px;
+            width: 9px;
+            height: 22px;
+        }
+
+        .steam.s1 { left: 19px; }
+        .steam.s2 { left: 34px; }
+        .steam.s3 { left: 49px; }
+        .steam.s4 { left: 64px; }
+
+        .action-row {
+            gap: 0.4rem;
+        }
+
+        .action-row .btn {
+            flex: 1 1 calc(50% - 0.2rem);
+            min-width: 0;
+            padding: 0.58rem 0.62rem;
+            font-size: 0.84rem;
+        }
+
+        .focus-modal {
+            padding: 0.65rem;
+        }
+
+        .focus-modal-panel {
+            padding: 0.72rem;
+        }
     }
 
     @media (max-width: 880px) {
@@ -742,6 +853,76 @@
 
         .focus-modal-actions .btn {
             flex: 1;
+        }
+
+        body.challenge-focus-mode .challenge-shell.focus-active {
+            padding: 0.7rem;
+        }
+    }
+
+    @media (min-width: 320px) {
+        .challenge-page {
+            padding: 0.45rem 0.35rem 0.95rem;
+        }
+
+        .challenge-card {
+            padding: 0.88rem;
+        }
+
+        .action-row {
+            justify-content: stretch;
+        }
+
+        .action-row .btn {
+            flex: 1 1 calc(50% - 0.6rem);
+        }
+    }
+
+    @media (min-width: 480px) {
+        .challenge-page {
+            padding: 0.55rem 0.5rem 1rem;
+        }
+
+        .challenge-card {
+            padding: 0.95rem;
+        }
+
+        .action-row {
+            justify-content: center;
+        }
+
+        .action-row .btn {
+            flex: 0 1 auto;
+            min-width: 112px;
+        }
+    }
+
+    @media (min-width: 768px) {
+        .challenge-page {
+            padding: 0.6rem 0.75rem 1rem;
+        }
+
+        .challenge-card {
+            padding: 1rem;
+        }
+
+        .challenge-subtitle,
+        .field-label,
+        .field-help,
+        .history-subtitle,
+        .history-topic,
+        .history-meta,
+        .history-empty,
+        .btn,
+        .text-input,
+        .pick-object-btn {
+            font-size: 0.9rem;
+        }
+    }
+
+    @media (min-width: 1280px) {
+        .challenge-page {
+            max-width: 1180px;
         }
     }
 
@@ -774,97 +955,99 @@
     }
 </style>
 
-<div id="challengeShell" class="challenge-shell">
-    <div id="focusDimLayer" class="focus-dim-layer" aria-hidden="true"></div>
+<div class="challenge-page">
+    <div id="challengeShell" class="challenge-shell">
+        <div id="focusDimLayer" class="focus-dim-layer" aria-hidden="true"></div>
 
-    <div class="challenge-grid">
-        <article class="challenge-card">
-            <div class="challenge-head">
-                <div>
-                    <h2 class="challenge-title">Focus Challenge</h2>
-                    <p class="challenge-subtitle">Challenge tetap gratis tanpa limit sesi. Batas hanya untuk fitur AI.</p>
-                </div>
-                <button id="exitFocusTopBtn" type="button" class="focus-exit-top hidden">Exit Focus Mode</button>
-            </div>
-
-            <div class="setup-grid">
-                <div class="field-card">
-                    <label for="setMinutesInput" class="field-label">Durasi sesi (menit)</label>
-                    <input id="setMinutesInput" type="number" min="1" max="600" value="10" class="text-input">
-                    <p class="field-help">Durasi sesi challenge tetap bebas untuk semua user.</p>
-                </div>
-                <div class="field-card">
-                    <label class="field-label">Visual fokus</label>
-                    <button id="pickObjectBtn" type="button" class="pick-object-btn">Pilih visual fokus</button>
-                    <p id="objectHelper" class="field-help">Belum ada visual dipilih.</p>
-                </div>
-            </div>
-
-            <section class="focus-stage" aria-live="polite">
-                <h3 id="timerDisplay" class="timer-display">10:00</h3>
-                <p class="object-caption">Objek aktif: <span id="selectedObjectLabel">-</span></p>
-                <div id="visualObject" class="visual-object"></div>
-            </section>
-
-            <div class="action-row">
-                <button id="startBtn" type="button" class="btn btn-start">Start</button>
-                <button id="pauseBtn" type="button" class="btn btn-pause" disabled>Pause</button>
-                <button id="endBtn" type="button" class="btn btn-end" disabled>Akhiri</button>
-                <button id="resetBtn" type="button" class="btn btn-reset">Reset</button>
-                <button id="exitFocusBtn" type="button" class="btn btn-dark hidden">Exit Focus Mode</button>
-            </div>
-
-            <div class="status-row" aria-live="polite">
-                <span id="statusDot" class="status-dot ready"></span>
-                <span>Status:</span>
-                <span id="statusText">Ready</span>
-            </div>
-
-            <div id="completePanel" class="complete-panel hidden" role="status" aria-live="polite">
-                <h3>🎉 Sesi fokus selesai!</h3>
-                <p id="completeText">Durasi tercatat: 0 menit.</p>
-                <div class="panel-actions">
-                    <button id="showSaveFormBtn" type="button" class="btn btn-end">Simpan Sesi</button>
-                    <button id="exitFocusPanelBtn" type="button" class="btn btn-dark">Exit Focus Mode</button>
-                </div>
-            </div>
-
-            <form
-                id="saveSessionForm"
-                action="{{ route('challenge.sessions.store') }}"
-                method="POST"
-                class="save-form {{ $errors->any() ? '' : 'hidden' }}"
-            >
-                @csrf
-                <div class="form-field">
-                    <label for="topicInput" class="field-label">Judul Challenge</label>
-                    <input id="topicInput" name="topic" value="{{ old('topic') }}" class="text-input" placeholder="Contoh: Deep work fisika 45 menit" required>
-                </div>
-                <div class="form-field">
-                    <label for="minutesInput" class="field-label">Durasi tersimpan (menit)</label>
-                    <input id="minutesInput" type="number" name="minutes" min="1" max="600" value="{{ old('minutes', 10) }}" class="text-input" required>
-                </div>
-                <button type="submit" class="btn btn-save">Simpan Sesi Challenge</button>
-            </form>
-
-            <p class="helper-note">Komentar teknis: progress objek dihitung dari sisa_waktu/total_waktu untuk animasi yang halus dan sinkron.</p>
-        </article>
-
-        <aside class="challenge-card history-card">
-            <h3 class="history-title">Riwayat Challenge</h3>
-            <p class="history-subtitle">Sesi terbaru kamu tersimpan di sini.</p>
-
-            <div class="history-list">
-                @forelse ($recentSessions as $session)
-                    <div class="history-item">
-                        <p class="history-topic">{{ $session->topic ?: 'Focus challenge' }}</p>
-                        <p class="history-meta">{{ $session->minutes }} menit • {{ $session->created_at->format('d M Y H:i') }}</p>
+        <div class="challenge-grid">
+            <article class="challenge-card">
+                <div class="challenge-head">
+                    <div>
+                        <h2 class="challenge-title">Focus Challenge</h2>
+                        <p class="challenge-subtitle">Challenge tetap gratis tanpa limit sesi. Batas hanya untuk fitur AI.</p>
                     </div>
-                @empty
-                    <p class="history-empty">Belum ada sesi challenge.</p>
-                @endforelse
-            </div>
-        </aside>
+                    <button id="exitFocusTopBtn" type="button" class="focus-exit-top hidden">Exit Focus Mode</button>
+                </div>
+
+                <div class="setup-grid">
+                    <div class="field-card">
+                        <label for="setMinutesInput" class="field-label">Durasi sesi (menit)</label>
+                        <input id="setMinutesInput" type="number" min="1" max="600" value="10" class="text-input">
+                        <p class="field-help">Durasi sesi challenge tetap bebas untuk semua user.</p>
+                    </div>
+                    <div class="field-card">
+                        <label class="field-label">Visual fokus</label>
+                        <button id="pickObjectBtn" type="button" class="pick-object-btn">Pilih visual fokus</button>
+                        <p id="objectHelper" class="field-help">Belum ada visual dipilih.</p>
+                    </div>
+                </div>
+
+                <section class="focus-stage" aria-live="polite">
+                    <h3 id="timerDisplay" class="timer-display">10:00</h3>
+                    <p class="object-caption">Objek aktif: <span id="selectedObjectLabel">-</span></p>
+                    <div id="visualObject" class="visual-object"></div>
+                </section>
+
+                <div class="action-row">
+                    <button id="startBtn" type="button" class="btn btn-start">Start</button>
+                    <button id="pauseBtn" type="button" class="btn btn-pause" disabled>Pause</button>
+                    <button id="endBtn" type="button" class="btn btn-end" disabled>Akhiri</button>
+                    <button id="resetBtn" type="button" class="btn btn-reset">Reset</button>
+                    <button id="exitFocusBtn" type="button" class="btn btn-dark hidden">Exit Focus Mode</button>
+                </div>
+
+                <div class="status-row" aria-live="polite">
+                    <span id="statusDot" class="status-dot ready"></span>
+                    <span>Status:</span>
+                    <span id="statusText">Ready</span>
+                </div>
+
+                <div id="completePanel" class="complete-panel hidden" role="status" aria-live="polite">
+                    <h3>🎉 Sesi fokus selesai!</h3>
+                    <p id="completeText">Durasi tercatat: 0 menit.</p>
+                    <div class="panel-actions">
+                        <button id="showSaveFormBtn" type="button" class="btn btn-end">Simpan Sesi</button>
+                        <button id="exitFocusPanelBtn" type="button" class="btn btn-dark">Exit Focus Mode</button>
+                    </div>
+                </div>
+
+                <form
+                    id="saveSessionForm"
+                    action="{{ route('challenge.sessions.store') }}"
+                    method="POST"
+                    class="save-form {{ $errors->any() ? '' : 'hidden' }}"
+                >
+                    @csrf
+                    <div class="form-field">
+                        <label for="topicInput" class="field-label">Judul Challenge</label>
+                        <input id="topicInput" name="topic" value="{{ old('topic') }}" class="text-input" placeholder="Contoh: Deep work fisika 45 menit" required>
+                    </div>
+                    <div class="form-field">
+                        <label for="minutesInput" class="field-label">Durasi tersimpan (menit)</label>
+                        <input id="minutesInput" type="number" name="minutes" min="1" max="600" value="{{ old('minutes', 10) }}" class="text-input" required>
+                    </div>
+                    <button type="submit" class="btn btn-save">Simpan Sesi Challenge</button>
+                </form>
+
+                <p class="helper-note">Komentar teknis: progress objek dihitung dari sisa_waktu/total_waktu untuk animasi yang halus dan sinkron.</p>
+            </article>
+
+            <aside class="challenge-card history-card">
+                <h3 class="history-title">Riwayat Challenge</h3>
+                <p class="history-subtitle">Sesi terbaru kamu tersimpan di sini.</p>
+
+                <div class="history-list">
+                    @forelse ($recentSessions as $session)
+                        <div class="history-item">
+                            <p class="history-topic">{{ $session->topic ?: 'Focus challenge' }}</p>
+                            <p class="history-meta">{{ $session->minutes }} menit • {{ $session->created_at->format('d M Y H:i') }}</p>
+                        </div>
+                    @empty
+                        <p class="history-empty">Belum ada sesi challenge.</p>
+                    @endforelse
+                </div>
+            </aside>
+        </div>
     </div>
 </div>
 

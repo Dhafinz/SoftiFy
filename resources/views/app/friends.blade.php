@@ -7,15 +7,15 @@
             <h2 class="text-xl font-bold text-slate-900">Teman</h2>
             <p class="mt-1 text-sm text-slate-600">Cari user lain, kirim request, dan kelola pertemananmu.</p>
 
-            <form method="GET" action="{{ route('friends.index') }}" class="mt-4 flex flex-wrap items-center gap-2">
+            <form method="GET" action="{{ route('friends.index') }}" class="mt-4 flex flex-col items-stretch gap-2 sm:flex-row sm:items-center">
                 <input
                     type="text"
                     name="q"
                     value="{{ $query }}"
                     placeholder="Cari nama atau email"
-                    class="min-w-[220px] flex-1 rounded-xl border border-slate-300 px-3 py-2.5 text-sm focus:border-softi-500 focus:outline-none focus:ring-2 focus:ring-softi-100"
+                    class="min-w-0 w-full sm:min-w-[220px] flex-1 rounded-xl border border-slate-300 px-3 py-2.5 text-sm focus:border-softi-500 focus:outline-none focus:ring-2 focus:ring-softi-100"
                 >
-                <button type="submit" class="rounded-xl bg-gradient-to-r from-softi-600 to-cyan-600 px-4 py-2.5 text-sm font-semibold text-white">Cari</button>
+                <button type="submit" class="w-full sm:w-auto rounded-xl bg-gradient-to-r from-softi-600 to-cyan-600 px-4 py-2.5 text-sm font-semibold text-white">Cari</button>
             </form>
 
             <div class="mt-4 space-y-2">
@@ -54,7 +54,7 @@
                     @php
                         $isOnline = optional($friend->updated_at)->gt(now()->subMinutes(5));
                     @endphp
-                    <div class="flex items-center justify-between rounded-xl border border-slate-200 bg-slate-50 px-3 py-2.5">
+                    <div class="flex flex-wrap items-center justify-between gap-2 rounded-xl border border-slate-200 bg-slate-50 px-3 py-2.5">
                         <div>
                             <p class="font-semibold text-slate-800">{{ $friend->name }}</p>
                             <p class="text-xs text-slate-500">{{ $friend->email }}</p>

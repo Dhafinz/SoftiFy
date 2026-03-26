@@ -13,11 +13,15 @@ use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\PrivateChatController;
 use App\Http\Controllers\PremiumController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\StudySessionController;
 use App\Http\Controllers\TargetController;
 use App\Http\Controllers\TargetLogController;
 use App\Http\Controllers\TaskController;
+use App\Models\Review;
+use App\Models\User;
 use App\Models\WebsiteSetting;
+use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\Route;
 
 $pageViewData = static function (): array {
@@ -43,6 +47,37 @@ $pageViewData = static function (): array {
         ->values()
         ->all();
 
+    $totalUsers = 0;
+    $activeUsers = 0;
+    $averageRating = null;
+    $recentReviews = collect();
+    $totalReviews = 0;
+
+    try {
+        $totalUsers = User::query()->count();
+
+        $activeUsers = User::query()
+            ->where(function ($query) {
+                $query->whereHas('studySessions', fn ($sessions) => $sessions->where('created_at', '>=', now()->subDays(30)))
+                    ->orWhereHas('tasks', fn ($tasks) => $tasks->where('updated_at', '>=', now()->subDays(30)))
+                    ->orWhereHas('diaries', fn ($diaries) => $diaries->where('updated_at', '>=', now()->subDays(30)));
+            })
+            ->count();
+
+        $avgRatingRaw = (float) Review::query()->avg('rating');
+        $averageRating = $avgRatingRaw > 0 ? round($avgRatingRaw, 1) : null;
+
+        $recentReviews = Review::query()
+            ->with('user:id,name')
+            ->latest('id')
+            ->limit(6)
+            ->get();
+
+        $totalReviews = Review::query()->count();
+    } catch (QueryException) {
+        // Keep homepage available when review table is not migrated yet.
+    }
+
     return [
         'premiumPriceMonthly' => (int) WebsiteSetting::getValue('premium_price_monthly', '49000'),
         'premiumFeatureLines' => collect(preg_split('/\r\n|\r|\n/', WebsiteSetting::getValue('premium_feature_lines', '') ?: ''))
@@ -51,6 +86,11 @@ $pageViewData = static function (): array {
             ->values()
             ->all(),
         'howItWorksSteps' => $howItWorks,
+        'heroTotalUsers' => $totalUsers,
+        'heroActiveUsers' => $activeUsers,
+        'heroAverageRating' => $averageRating,
+        'recentReviews' => $recentReviews,
+        'totalReviews' => $totalReviews,
     ];
 };
 
@@ -61,6 +101,12 @@ Route::get('/', function () use ($pageViewData) {
 Route::get('/page', function () use ($pageViewData) {
     return view('page', $pageViewData());
 })->name('page');
+
+Route::get('/tentang-kami', function () use ($pageViewData) {
+    return view('about', $pageViewData());
+})->name('about');
+
+Route::get('/ulasan', [ReviewController::class, 'publicIndex'])->name('reviews.public');
 
 Route::middleware('guest')->group(function () {
     Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
@@ -82,6 +128,8 @@ Route::middleware(['auth', 'not.banned'])->group(function () {
     Route::get('/chat', [PrivateChatController::class, 'index'])->name('chat.index');
     Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
     Route::get('/premium', [PremiumController::class, 'index'])->name('premium');
+    Route::get('/reviews', [ReviewController::class, 'index'])->name('reviews.index');
+    Route::post('/reviews', [ReviewController::class, 'store'])->name('reviews.store');
 
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 

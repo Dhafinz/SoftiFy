@@ -47,19 +47,19 @@
                 <span class="rounded-full bg-softi-50 px-3 py-1 text-xs font-semibold text-softi-700">PRIVATE</span>
             </div>
 
-            <div id="privateChatBox" class="h-[430px] overflow-y-auto rounded-2xl border border-slate-200 bg-slate-50 p-3 space-y-3"></div>
+            <div id="privateChatBox" class="h-[52vh] min-h-[280px] max-h-[430px] overflow-y-auto rounded-2xl border border-slate-200 bg-slate-50 p-3 space-y-3"></div>
 
-            <form id="privateChatForm" class="mt-4 flex items-center gap-2">
+            <form id="privateChatForm" class="mt-4 flex flex-col items-stretch gap-2 sm:flex-row sm:items-center">
                 @csrf
                 <input
                     id="privateMessageInput"
                     type="text"
-                    class="flex-1 rounded-xl border border-slate-300 px-3 py-2.5 text-sm focus:border-softi-500 focus:outline-none focus:ring-2 focus:ring-softi-100"
+                    class="flex-1 min-w-0 rounded-xl border border-slate-300 px-3 py-2.5 text-sm focus:border-softi-500 focus:outline-none focus:ring-2 focus:ring-softi-100"
                     placeholder="Ketik pesan..."
                     maxlength="2000"
                     required
                 >
-                <button id="privateSendBtn" type="submit" class="rounded-xl bg-gradient-to-r from-softi-600 to-cyan-600 px-4 py-2.5 text-sm font-semibold text-white">Kirim</button>
+                <button id="privateSendBtn" type="submit" class="w-full sm:w-auto rounded-xl bg-gradient-to-r from-softi-600 to-cyan-600 px-4 py-2.5 text-sm font-semibold text-white">Kirim</button>
             </form>
             <p id="privateSendingIndicator" class="mt-2 text-xs text-softi-700 hidden">sending...</p>
             <p id="privateChatError" class="mt-2 text-xs text-red-600 hidden"></p>
