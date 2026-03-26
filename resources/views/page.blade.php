@@ -67,37 +67,36 @@
     <main>
 <section class="hero" id="beranda">
     <div class="heros">
-{{-- Penjelasan dan tombool hero --}}
         <div class="hero-content">
+            <p class="hero-eyebrow">Belajar lebih fokus, progres lebih terasa</p>
             <h3>Ubah Produktivitasmu Menjadi Permainan.</h3>
             <p><span>SOFTIFY</span> adalah platform produktivitas pelajar yang menggabungkan sistem AI cerdas, gamifikasi motivasi, dan manajemen tugas dalam satu dashboard yang kuat.</p>
             <div class="tombol">
                 <a href="{{ route('daftar') }}" class="mulai">Coba Sekarang</a>
                 <button type="button" class="demo" id="demo-btn">Tonton Demo</button>
             </div>
-{{-- Total aktif serta total rating website --}}
+            <p class="hero-note">Mulai gratis dan lanjut upgrade kapan pun sesuai kebutuhanmu.</p>
             <div class="aktif">
-                <div class="pengguna">
-                    <p style="font-weight: bold; font-size: 30px;">{{ number_format((int) ($heroTotalUsers ?? 0), 0, ',', '.') }}</p>
-                    <p>Total Pengguna</p>
+                <div class="pengguna hero-stat">
+                    <p class="hero-stat-number">{{ number_format((int) ($heroTotalUsers ?? 0), 0, ',', '.') }}</p>
+                    <p class="hero-stat-label">Total Pengguna</p>
                 </div>
-                <div class="rating">
-                    <p style="font-weight: bold; font-size: 30px;">{{ ($heroAverageRating ?? null) ? number_format((float) $heroAverageRating, 1) : '0.0' }}/5</p>
-                    <p>Rating Pengguna</p>
+                <div class="rating hero-stat">
+                    <p class="hero-stat-number">{{ ($heroAverageRating ?? null) ? number_format((float) $heroAverageRating, 1) : '0.0' }}/5</p>
+                    <p class="hero-stat-label">Rating Pengguna</p>
                 </div>
 
-                <div class="pengguna-aktif">
-                    <p style="font-weight: bold; font-size: 30px;">{{ number_format((int) ($heroActiveUsers ?? 0), 0, ',', '.') }}</p>
-                    <p>Pengguna Aktif</p>
+                <div class="pengguna-aktif hero-stat">
+                    <p class="hero-stat-number">{{ number_format((int) ($heroActiveUsers ?? 0), 0, ',', '.') }}</p>
+                    <p class="hero-stat-label">Pengguna Aktif</p>
                 </div>
             </div>
         </div>
-{{-- Gambar dari halaman dashboard user --}}
         <div class="content">
-            <img src="{{ asset('img/contoh.png') }}" alt="Hero Image">
+            <img src="{{ asset('img/contoh.png') }}" alt="Hero Image" class="hero-visual">
         </div>
     </div>
-    <img src="{{ asset('img/bg.png') }}" alt="Background Image" style="width: 100%;">
+    <img src="{{ asset('img/bg.png') }}" alt="Background Image" class="hero-bg-image">
 </section>
         <section class="feature" id="fitur">
             <div class="feature-shell">
